@@ -1,5 +1,5 @@
 # BlueSignal
-# Juha
-# Jiyeon
-# Yeasoel
-# Minji
++ Juha
++ Jiyeon
++ Yeasoel
++ Minji
