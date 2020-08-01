@@ -23,7 +23,7 @@
         android:id="@+id/bluetooth_start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="신호 전송 시작"
+        android:text="입장권 발급"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
