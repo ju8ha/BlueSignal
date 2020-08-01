@@ -2,22 +2,13 @@ package com.example.bluesignal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    //홈 화면 엑티비티
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-    public void onLoginButtonClicked(View view) {
-        startActivity(new Intent(MainActivity.this, MainActivity1.class));
-    }
-
-
 }
