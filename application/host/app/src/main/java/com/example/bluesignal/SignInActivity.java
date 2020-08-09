@@ -55,7 +55,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private boolean check(String id, String pswd){
         // 서버에서 id값과 pswd값을 비교해서 존재하면 true, 다르면 false
-        return false;
+        return true;
     }
 
     private void Toast_error_id_pswd(){
