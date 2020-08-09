@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         scanner.stopScan();
 //                        printText.setText(scanner.result());
+                        System.out.println(scanner.result());
                     }
                 },10000);
             }
