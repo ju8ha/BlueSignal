@@ -6,11 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".IntroActivity">
 
+    <ImageView
+        android:id="@+id/image_blueSignal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395"
+        tools:srcCompat="@drawable/main_logo" />
+
     <TextView
-        android:id="@+id/logoText"
+        android:id="@+id/text_blueSignal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로고를 띄우자"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="325dp" />
+        android:fontFamily="casual"
+        android:text="BLUE SIGNAL"
+        android:textColor="#4486c0"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_blueSignal"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
