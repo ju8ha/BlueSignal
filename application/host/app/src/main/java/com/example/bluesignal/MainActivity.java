@@ -40,10 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(ButtonClickedState==false){
                     bluetooth_start_button.setSelected(true);
+                    bluetooth_start_button.setText("신호 전송 중지");
                     ButtonClickedState=true;
                 }else{
-                    ButtonClickedState=false;
                     bluetooth_start_button.setSelected(false);
+                    bluetooth_start_button.setText("신호 전송 시작");
+                    ButtonClickedState=false;
                 }
 
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         advertiser.stopAdvertise();
                         bluetooth_start_button.setSelected(false);
+                        ButtonClickedState=false;
                     }
                 },10000);
             }
