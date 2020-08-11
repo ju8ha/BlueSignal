@@ -1,6 +1,7 @@
 package com.example.bluesignal;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class VisitLogActivity extends AppCompatActivity {
