@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
     BluetoothManager manager;
     MyBluetoothLeAdvertiser advertiser;
 
+    private boolean ButtonClickedState = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +37,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 advertiser.startAdvertise(myID);
 
+
+                if(ButtonClickedState==false){
+                    bluetooth_start_button.setSelected(true);
+                    bluetooth_start_button.setText("신호 전송 중지");
+                    ButtonClickedState=true;
+                }else{
+                    bluetooth_start_button.setSelected(false);
+                    bluetooth_start_button.setText("신호 전송 시작");
+                    ButtonClickedState=false;
+                }
+
+
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         advertiser.stopAdvertise();
+                        bluetooth_start_button.setSelected(false);
+                        ButtonClickedState=false;
                     }
                 },10000);
             }
@@ -51,4 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
 }

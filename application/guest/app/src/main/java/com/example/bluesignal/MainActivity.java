@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
+
+    //문진표 activity에서 해야함
+    boolean visit_available = true; // 문진표 작성 -> 방문 가능-> 테스트를 위해 true로 해놓음
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 scanner.startScan();
 
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -51,7 +56,21 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(scanner.result());
                     }
                 },10000);
+
+
+
+                //문진표 작성 activity에서 해야함  --> 문진표 작성 후 확인 눌렀을 때 !
+                //-->방문 가능할 경우
+                if(visit_available==true){
+                    //방문증으로 전환
+                    startActivity(new Intent(MainActivity.this, VisitCardActivity.class));
+                }
+
+
+
             }
         });
+
+
     }
 }
