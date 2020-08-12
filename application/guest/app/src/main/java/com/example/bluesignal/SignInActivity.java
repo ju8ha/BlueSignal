@@ -44,9 +44,6 @@ public class SignInActivity extends AppCompatActivity {
                 final String userID=id_text.getText().toString();
                 String userPass=password_text.getText().toString();
 
-                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                intent.putExtra("guest_id",userID); //게스트 아이디 정보 메인으로 보냄
-
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -61,6 +58,7 @@ public class SignInActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                 /*intent.putExtra("log", "User");
                                 intent.putExtra("userID", userID);*/
+                                intent.putExtra("guest_id",userID); //게스트 아이디 정보 메인으로 보냄
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우

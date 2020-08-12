@@ -21,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
 
-    String guest_id;
-    String guest_name;
-    String guest_phnNumber;
+    String guest_id="";
+    String guest_name="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,13 +103,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
 
         intent.putExtra("name",guest_name);
-        intent.putExtra("phone_number",guest_phnNumber);
 
         startActivity(intent);
     }
 
     private boolean IsThereAnyReport() {
-        return false;
+        return true;
     }
 
     private boolean IsThereAnyInput(String input){

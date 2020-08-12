@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_number_text"
+        app:layout_constraintTop_toBottomOf="@+id/time"
         app:layout_constraintVertical_bias="0.307" />
 
     <Button
@@ -38,7 +38,7 @@
         android:background="#FFFFFF"
         android:onClick="mOnClick"
         android:text="생일"
-        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
+        app:layout_constraintBottom_toTopOf="@+id/time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.241" />
 
     <EditText
-        android:id="@+id/phone_number_text"
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

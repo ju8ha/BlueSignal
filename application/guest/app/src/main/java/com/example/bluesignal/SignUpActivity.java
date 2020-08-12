@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
         password_text = (EditText)findViewById(R.id.password_text);
         name_text = (EditText)findViewById(R.id.name_text);
         birthday_button = (Button)findViewById(R.id.birthday_button);
-        phone_number_text = (EditText)findViewById(R.id.phone_number_text);
+        phone_number_text = (EditText)findViewById(R.id.time);
         //mEditTextState = (EditText)findViewById(R.id.editText_main_state);
         //mEditTextIssurvey= (EditText)findViewById(R.id.editText_main_issurvey);
         //mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
