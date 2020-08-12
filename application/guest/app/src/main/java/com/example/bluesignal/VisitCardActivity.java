@@ -23,10 +23,17 @@ public class VisitCardActivity extends MainActivity {
 
 
         name_text = (TextView) findViewById(R.id.name_text);
-        name_text.setText("홍길동"); //이름 가져와야함
+
+        Intent intent = getIntent();
+
+        String name = intent.getExtras().getString("name");
+        name_text.setText(name); //이름 가져와야함
+
 
         phone_number_text = (TextView) findViewById(R.id.phone_number_text);
-        phone_number_text.setText("010-1111-1111"); //전화번호 가져와야함
+        String phone_number = intent.getExtras().getString("phone_number");
+        phone_number_text.setText(phone_number); //전화번호 가져와야함
+
 
         time = (TextView) findViewById(R.id.time);
         long now = System.currentTimeMillis();
