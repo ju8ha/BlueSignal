@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 여긴 이제 사용자 일정 리스트 엑티비티 띄워주는 기능을 하면 됨
+                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
+                startActivity(intent);
             }
         });
 
