@@ -11,4 +11,8 @@ public class VisitLogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit_log);
     }
+
+
+
+
 }
