@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 scanner.startScan();
-
+                bluetooth_start_button.setEnabled(false);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -72,11 +72,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 },10000);
-
-                //
-
-
-
 
             }
         });
@@ -129,5 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        bluetooth_start_button.setEnabled(true);
     }
 }
