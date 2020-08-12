@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class TestActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity {
     Button test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_report);
 
         test = (Button)findViewById(R.id.test);
 
