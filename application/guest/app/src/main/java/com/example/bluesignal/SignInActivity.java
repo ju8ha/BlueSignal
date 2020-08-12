@@ -44,6 +44,9 @@ public class SignInActivity extends AppCompatActivity {
                 final String userID=id_text.getText().toString();
                 String userPass=password_text.getText().toString();
 
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                intent.putExtra("guest_id",userID); //게스트 아이디 정보 메인으로 보냄
+
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

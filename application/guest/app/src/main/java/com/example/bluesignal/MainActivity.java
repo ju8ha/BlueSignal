@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
 
     String guest_id;
-    String guest_name ="홍길동";
-    String guest_phnNumber="010-1111-1111";
+    String guest_name;
+    String guest_phnNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
+
+        Intent intent = getIntent();
+        guest_id = intent.getExtras().getString("guest_id");
+
+        GetGuestInfoByServer();
+
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
@@ -50,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 scanner.startScan();
-
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -81,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void GetGuestInfoByServer() {
+        //게스트 정보 서버에서 가져오기
 
     }
 
