@@ -23,9 +23,11 @@ public class SignInActivity extends AppCompatActivity {
     //로그인 activity
     Button sign_in_button;
     Button sign_up_button;
-    TextView id;
-    TextView pswd;
+//    TextView id;
+//    TextView pswd;
     private EditText id_text, password_text;
+
+    GuestInfo guestInfo = GuestInfo.getInstance();
 
 
     @Override
@@ -42,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String userID=id_text.getText().toString();
-                String userPass = password_text.getText().toString();
+                final String userPswd=password_text.getText().toString();
 
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
@@ -63,14 +65,8 @@ public class SignInActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
-                                intent.putExtra("guest_id",userID); //게스트 아이디 정보 메인으로 보냄
-                                intent.putExtra( "guest_pw", userPass );
-                                intent.putExtra( "guest_name", userName );
-                                intent.putExtra( "guest_birth", userBirth );
-                                intent.putExtra( "guest_phnNumber", userNumber );
-                                intent.putExtra( "guest_state", userState );
-                                intent.putExtra( "is_survey", is_survey );
-
+                                guestInfo.setIDPSWD(userID,userPswd);
+                              
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
@@ -83,7 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 };
-                SignInRequest loginRequest=new SignInRequest(userID, userPass, responseListener);
+                SignInRequest loginRequest=new SignInRequest(userID, userPswd, responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignInActivity.this);
                 queue.add(loginRequest);
             }
