@@ -56,11 +56,13 @@ public class SignInActivity extends AppCompatActivity {
                             if (success) {//회원등록 성공한 경우
                                 String userID = jasonObject.getString("userID");
                                 String userPswd = jasonObject.getString("userPassword");
+                                String userPass = jasonObject.getString("userPassword");
                                 String userName = jasonObject.getString("userName");
                                 String userBirth = jasonObject.getString("userBirth");
                                 String userNumber = jasonObject.getString("userNumber");
                                 String userState = jasonObject.getString("userState");
                                 String report = jasonObject.getString("is_survey");
+                                String is_survey = jasonObject.getString("is_survey");
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
@@ -68,7 +70,8 @@ public class SignInActivity extends AppCompatActivity {
                                 guestInfo.setIDPSWD(userID,userPswd);
                                 guestInfo.setNBPSR(userName, userBirth, userNumber, userState, report);
 
-                                intent.putExtra("log", "User");
+                                //intent.putExtra("log", "User");
+
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
