@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
 
-        GetGuestInfoByServer();
+        //GetGuestInfoByServer();
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
