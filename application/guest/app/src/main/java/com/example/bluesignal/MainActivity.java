@@ -10,13 +10,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
 
     Button visit_log_button;
     Button bluetooth_start_button;
+    ImageView drawer_image;
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
@@ -30,12 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
+        drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
         GetGuestInfoByServer();
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
 
+        drawer_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast();
+            }
+        });
 
         visit_log_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,5 +122,9 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean IsThereAnyInput(String input){
         return true;
+    }
+
+    private void Toast(){
+        Toast.makeText(this,"클릭", LENGTH_SHORT).show();
     }
 }
