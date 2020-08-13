@@ -31,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
 
-        GetGuestInfoByServer();
-
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
-
 
         visit_log_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,18 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-    }
-
-    private void GetGuestInfoByServer() {
-        //게스트 정보 서버에서 가져오기
-        String id = guestInfo.getId();
-
-
-        //해당 정보를 guestInfo에 저장
-        guestInfo.setNBPSR("name","birthday","phnNumber","status","report");
-
     }
 
     private Boolean WriteReport() {
