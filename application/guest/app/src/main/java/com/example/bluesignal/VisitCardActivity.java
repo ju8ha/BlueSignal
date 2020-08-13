@@ -10,28 +10,26 @@ import java.util.Date;
 
 public class VisitCardActivity extends MainActivity {
     TextView name_text;
+    TextView phone_number_text;
     TextView date;
     TextView time;
+    GuestInfo guestInfo = GuestInfo.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit_card);
 
-
+        //이름 설정
         name_text = (TextView) findViewById(R.id.name_text);
+        name_text.setText(guestInfo.getName());
 
-        Intent intent = getIntent();
-
-        String name = intent.getExtras().getString("name");
-        name_text.setText(name); //이름 가져와야함
-
-
-        date = (TextView) findViewById(R.id.date);
 
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
 
+
+        date = (TextView) findViewById(R.id.date);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd");
         String getDate = simpleDate.format(mDate);
         date.setText(getDate); //전화번호 가져와야함
@@ -41,9 +39,6 @@ public class VisitCardActivity extends MainActivity {
         SimpleDateFormat simpleDate1 = new SimpleDateFormat("hh:mm:ss");
         String getTime = simpleDate1.format(mDate);
         time.setText(getTime);
-
-
-
 
     }
 
