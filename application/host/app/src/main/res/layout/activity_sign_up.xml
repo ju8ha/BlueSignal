@@ -64,29 +64,14 @@
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/birthday_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.941" />
-
-    <Button
-        android:id="@+id/birthday_button"
-        android:layout_width="210dp"
-        android:layout_height="50dp"
-        android:background="#FFFFFF"
-        android:onClick="mOnClick"
-        android:text="생일"
-        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.964" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/phone_number_text"
@@ -106,13 +91,26 @@
         android:id="@+id/sign_up_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="51dp"
+        android:layout_marginBottom="257dp"
         android:text="SIGN UP"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074" />
+
+    <TextView
+        android:id="@+id/birthday_text"
+        android:layout_width="213dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="326dp"
+        android:text="Birthday"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
