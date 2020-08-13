@@ -62,7 +62,6 @@ public class SignInActivity extends AppCompatActivity {
                                 String userNumber = jasonObject.getString("userNumber");
                                 String userState = jasonObject.getString("userState");
                                 String report = jasonObject.getString("is_survey");
-                                String is_survey = jasonObject.getString("is_survey");
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
