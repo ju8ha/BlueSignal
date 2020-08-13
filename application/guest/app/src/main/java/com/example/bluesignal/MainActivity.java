@@ -22,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
 
     String guest_id;
+    String guest_pw;
     String guest_name;
+    String guest_birth;
     String guest_phnNumber;
+    String guest_state;
+    String is_survey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         GetGuestInfoByServer();
 
-
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
-
 
         visit_log_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,13 +86,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void GetGuestInfoByServer() {
         //게스트 정보 서버에서 가져오기
-
+        Intent intent = getIntent();
+        guest_id = intent.getStringExtra("guest_id");
+        guest_pw = intent.getStringExtra("guest_pw");
+        guest_name = intent.getStringExtra("guest_name");
+        guest_birth = intent.getStringExtra("guest_birth");
+        guest_phnNumber = intent.getStringExtra("guest_phnNumber");
+        guest_state = intent.getStringExtra("guest_state");
+        is_survey = intent.getStringExtra("is_survey");
     }
 
     private Boolean WriteReport() {
@@ -103,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
     private void OpenVisitCard() {
         Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
 
-        intent.putExtra("name",guest_name);
-        intent.putExtra("phone_number",guest_phnNumber);
+        intent.putExtra("guest_name",guest_name);
+        intent.putExtra("guest_phnNumber",guest_phnNumber);
 
         startActivity(intent);
     }
@@ -125,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
                 String test = data.getStringExtra("result");
                 Toast.makeText(this,test,Toast.LENGTH_SHORT).show();
 
-                if(test.equals("UnInfected")){ //문진표 띄우고 상태가 문진표 정상 상태일 경우
+                if(guest_state.equals("UnInfected")){ //문진표 띄우고 상태가 문진표 정상 상태일 경우
                         OpenVisitCard();    //출입증 띄우기
-                }else if(test.equals("Infected")) {
+                }else if(guest_state.equals("Infected")) {
                         //감염됨-> 방문불가
                     Toast.makeText(this,"방문이 불가능합니다",Toast.LENGTH_SHORT).show();
                 }
@@ -135,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     //error// 문진표에서 문제가 발생함! 토스트 메세지? 또는 알림창?
                     Toast.makeText(this,"치명적인 에러 발생!",Toast.LENGTH_SHORT).show();
                 }
-
             }
         }
         bluetooth_start_button.setEnabled(true);

@@ -21,17 +21,16 @@ public class VisitCardActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit_card);
 
-
         name_text = (TextView) findViewById(R.id.name_text);
 
         Intent intent = getIntent();
 
-        String name = intent.getExtras().getString("name");
+        String name = intent.getExtras().getString("guest_name");
         name_text.setText(name); //이름 가져와야함
 
 
         phone_number_text = (TextView) findViewById(R.id.phone_number_text);
-        String phone_number = intent.getExtras().getString("phone_number");
+        String phone_number = intent.getExtras().getString("guest_phnNumber");
         phone_number_text.setText(phone_number); //전화번호 가져와야함
 
 
@@ -41,7 +40,6 @@ public class VisitCardActivity extends MainActivity {
         SimpleDateFormat simpleDate = new SimpleDateFormat("hh:mm:ss");
         String getTime = simpleDate.format(mDate);
         time.setText(getTime);
-
     }
 
     //x 누르면 뒤로 감
