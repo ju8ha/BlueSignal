@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class VisitCardActivity extends MainActivity {
     TextView name_text;
-    TextView phone_number_text;
     TextView date;
     TextView time;
     GuestInfo guestInfo = GuestInfo.getInstance();
@@ -32,7 +31,7 @@ public class VisitCardActivity extends MainActivity {
         date = (TextView) findViewById(R.id.date);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd");
         String getDate = simpleDate.format(mDate);
-        date.setText(getDate); //전화번호 가져와야함
+        date.setText(getDate); 
 
 
         time = (TextView) findViewById(R.id.time);

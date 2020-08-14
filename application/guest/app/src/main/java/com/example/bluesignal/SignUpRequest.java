@@ -29,5 +29,7 @@ public class SignUpRequest extends StringRequest {
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;
     }
+
+
 }
 

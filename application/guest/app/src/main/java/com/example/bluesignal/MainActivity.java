@@ -21,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
 
+    Button test_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        test_button = (Button)findViewById(R.id.test_button);
+
 
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
@@ -95,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean IsThereAnyInput(String input){
         return true;
+    }
+
+    public void onTestButtonClicked(View v){
+        Intent intent = new Intent(MainActivity.this, ChangeDetail.class);
+        startActivityForResult(intent,0);
     }
 }

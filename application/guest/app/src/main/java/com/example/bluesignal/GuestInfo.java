@@ -36,6 +36,8 @@ public class GuestInfo {
         this.id = id;
     }
 
+    public void setPswd(String pswd){ this.pswd = pswd; }
+
     public void setName(String name) {
         this.name = name;
     }
