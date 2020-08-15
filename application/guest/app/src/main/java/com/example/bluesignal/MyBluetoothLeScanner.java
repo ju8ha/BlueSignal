@@ -137,12 +137,11 @@ public class MyBluetoothLeScanner {
 // host_id 리스트 배열 저장
     private boolean findHostInServer(String hostName){
 
-        mArrayList = new ArrayList<>();
+        mArrayList = new ArrayList<>(); // host 정보 저장
 
         GetData task = new GetData();
         task.execute("http://seatrea.dothome.co.kr/host_info.php");
 
-        System.out.println("Hello " + mArrayList);
         if(hostName.equals("test")){
             return true;
         }
@@ -161,7 +160,6 @@ public class MyBluetoothLeScanner {
                     "Please Wait", null, true, true);
         }*/
 
-
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -171,23 +169,19 @@ public class MyBluetoothLeScanner {
             //Log.d(TAG, "response  - " + result);
             mJsonString = result;
             showResult();
-
         }
-
 
         @Override
         protected String doInBackground(String... params) {
 
             String serverURL = params[0];
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
                 httpURLConnection.connect();
-
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
                 Log.d(TAG, "response code - " + responseStatusCode);
@@ -210,12 +204,9 @@ public class MyBluetoothLeScanner {
                     sb.append(line);
                 }
 
-
                 bufferedReader.close();
 
-
                 return sb.toString().trim();
-
 
             } catch (Exception e) {
 
