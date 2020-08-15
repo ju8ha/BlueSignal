@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class ChangeDetail extends AppCompatActivity {
+public class ChangeInfoActivity extends AppCompatActivity {
 
     GuestInfo guestInfo = GuestInfo.getInstance();
 
@@ -92,7 +92,7 @@ public class ChangeDetail extends AppCompatActivity {
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {//회원등록 성공한 경우
                                     Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ChangeDetail.this, ChangeDetail.class);
+                                    Intent intent = new Intent(ChangeInfoActivity.this, ChangeInfoActivity.class);
                                     startActivity(intent);
                                 }
                                 else{//회원등록 실패한 경우
@@ -106,7 +106,7 @@ public class ChangeDetail extends AppCompatActivity {
                     };
                     //서버로 volley를 이용해서 요청을 함
                     ChangeRequest changeRequest=new ChangeRequest(guestInfo.getName(), guestInfo.getBirthday(), guestInfo.getPhnNumber(),responseListener);
-                    RequestQueue queue= Volley.newRequestQueue(ChangeDetail.this);
+                    RequestQueue queue= Volley.newRequestQueue(ChangeInfoActivity.this);
                     queue.add(changeRequest);
 
 
@@ -122,11 +122,11 @@ public class ChangeDetail extends AppCompatActivity {
 
 
     public void onChangePswdButtonClicked(View v){
-        startActivity(new Intent(ChangeDetail.this, ChangePassword.class));
+        startActivity(new Intent(ChangeInfoActivity.this, ChangePassword.class));
     }
 
     public void onBackButtonClicked(View v){ //드로어로 가야함 수정해줄 것
-        startActivity(new Intent(ChangeDetail.this, MainActivity.class));
+        startActivity(new Intent(ChangeInfoActivity.this, MainActivity.class));
     }
 
     public void onBirthdayButtonClicked(View v){

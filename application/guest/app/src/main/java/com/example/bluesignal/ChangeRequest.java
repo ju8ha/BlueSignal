@@ -13,7 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangeRequest extends StringRequest {
+public class ChangeRequest extends StringRequest{
 
     GuestInfo guestInfo = GuestInfo.getInstance();
 

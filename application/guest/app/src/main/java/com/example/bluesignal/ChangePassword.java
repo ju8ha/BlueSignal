@@ -93,7 +93,7 @@ public class ChangePassword extends AppCompatActivity {
     //변경 버튼 누르면 변경
 
     public void onBackButtonClicked(View v){
-        startActivity(new Intent(ChangePassword.this, ChangeDetail.class));
+        startActivity(new Intent(ChangePassword.this, ChangeInfoActivity.class));
     }
 
 }

@@ -1,6 +1,11 @@
 package com.example.bluesignal;
 
-public class GuestInfo {
+import android.content.Intent;
+import android.os.Bundle;
+
+
+
+public class GuestInfo{
     private static GuestInfo guestInfo = null;
     private String id;
     private String pswd;
@@ -53,7 +58,7 @@ public class GuestInfo {
     public void setStatus(String status) {
         this.status = status;
     }
-
+    //정상일경우 날짜
     public void setReport(String report) {
         this.report = report;
     }
@@ -74,6 +79,7 @@ public class GuestInfo {
         this.status = status;
         this.report = report;
     }
+
 
     public boolean isInfected(){
         if(this.status.equals("infected")){
