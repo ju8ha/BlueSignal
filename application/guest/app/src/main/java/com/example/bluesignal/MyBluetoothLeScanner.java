@@ -143,8 +143,11 @@ public class MyBluetoothLeScanner {
         task.execute("http://seatrea.dothome.co.kr/host_info.php");
 
         for(int i = 0; i<mArrayList.size(); i++){
-            if(mArrayList.get(i))
+            if(mArrayList.get(i).equals(hostName)){
+                return true;
+            }
         }
+        return false;
     }
 
     private class GetData extends AsyncTask<String, Void, String> {
