@@ -119,6 +119,7 @@
         android:id="@+id/birthday_text"
         android:layout_width="210dp"
         android:layout_height="50dp"
+        android:onClick="onText3Clicked"
         android:text="Birthday"
         app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
         app:layout_constraintEnd_toEndOf="parent"
