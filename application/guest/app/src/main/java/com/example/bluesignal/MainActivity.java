@@ -1,13 +1,18 @@
 package com.example.bluesignal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -22,8 +27,12 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Locale;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
   
     GuestInfo guestInfo = GuestInfo.getInstance();
+    Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -51,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_change_info,R.id.nav_setting,R.id.nav_sign_out)
+                R.id.nav_change_info,R.id.nav_sign_out,R.id.nav_withdrawal)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -89,30 +99,44 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 scanner.startScan();
 
                 bluetooth_start_button.setEnabled(false);
+                bluetooth_start_button.setBackgroundColor(Color.parseColor("#58ACFA"));
 
                 Handler handler = new Handler();
+
+                CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
+                    }
+
+                    public void onFinish() {
+                        bluetooth_start_button.setText("입장권 발급");
+                    }
+                }.start();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         scanner.stopScan();
 //                        printText.setText(scanner.result());
+                        System.out.println("*******************");
                         System.out.println(scanner.result());
+                        System.out.println("*******************");
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                            if(IsThereAnyReport()){ // 문진표를 작성했을 경우
-                                OpenVisitCard();
-                            }
-                            else{   //문진표를 작성하지 못했을 경우
+                          //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
+                            //    OpenVisitCard();
+                           // }
+                           // else{   //문진표를 작성하지 못했을 경우
                                 WriteReport();
-                            }
+                          //  }
                         }
                         else{
                             // Toast Message "스캔 실패"
                         }
                         bluetooth_start_button.setEnabled(true);
+                        bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
                 },10000);
 
@@ -128,8 +152,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                         startActivityForResult(intent1,1);
                         break;
-                    case R.id.nav_setting:
-                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                    case R.id.nav_withdrawal:   // 계정 탈퇴
+                        guestInfo.deleteAllInfo();
+
+                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
@@ -177,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean WriteReport() {
 
+
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
@@ -189,11 +216,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyReport() {
-        return true;
+
+        return false;
     }
 
     private boolean IsThereAnyInput(String input){
-        return true;
+    return  true;
     }
 
 }
