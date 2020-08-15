@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportActivity"
+    >
+<LinearLayout
+android:id="@+id/linearLayout3"
+android:layout_width="0dp"
+android:layout_height="39dp"
+
+
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent">
+
+<TextView
+    android:id="@+id/확인내용"
+    android:layout_width="282dp"
+    android:layout_height="39dp"
+
+    android:gravity="center_vertical"
+    android:text="확인내용" />
+
+<TextView
+    android:id="@+id/응답"
+    android:layout_width="match_parent"
+    android:layout_height="39dp"
+    android:gravity="center_vertical"
+
+    android:text="응답" />
+</LinearLayout>
+
+<ScrollView
+android:id="@+id/scrollView2"
+android:layout_width="match_parent"
+android:layout_height="667dp"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+<LinearLayout
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="977dp"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@id/linearLayout3">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="202dp">
+
+            <TextView
+                android:id="@+id/question1"
+                android:layout_width="282dp"
+                android:layout_height="39dp"
+                android:text="1. 최근 14일 이내에 아래의 증상을 경험한 적이 있습니까?"
+                tools:layout_editor_absoluteX="-3dp"
+                tools:layout_editor_absoluteY="232dp" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup1"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+
+
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes1"
+                    android:layout_width="57dp"
+                    android:layout_height="39dp"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/miniquestion1"
+            android:layout_width="334dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="4dp"
+            android:text="*예라고 답한 경우, 해당 증상에 표시하십시오." />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TableRow>
+
+
+            <CheckBox
+                android:id="@+id/checkBox1_오한"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:text="오한" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_발열"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="발열" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_기침"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+
+                android:text="기침"
+                app:layout_constraintStart_toEndOf="@+id/checkBox1_발열"
+                app:layout_constraintTop_toBottomOf="@+id/miniquestion1" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_가래"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="가래"
+                app:layout_constraintStart_toEndOf="@+id/checkBox1_근육통"
+                app:layout_constraintTop_toBottomOf="@+id/miniquestion1" />
+        </TableRow>
+
+        <TableRow>
+
+
+            <CheckBox
+                android:id="@+id/checkBox1_인후통"
+                android:layout_width="80dp"
+                android:layout_height="26dp"
+
+                android:text="인후통" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_근육통"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="근육통"
+                app:layout_constraintStart_toStartOf="@+id/checkBox1_기침"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1_기침" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_구토"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="구토"
+                app:layout_constraintStart_toStartOf="@+id/checkBox1_오한"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1_오한" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_콧물"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="콧물, 코막힘" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <CheckBox
+                android:id="@+id/checkBox1_두통"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="두통"
+                app:layout_constraintStart_toStartOf="@+id/checkBox7"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_복통"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="복통"
+                app:layout_constraintStart_toStartOf="@+id/checkBox1_근육통"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1_근육통" />
+
+            <CheckBox
+                android:id="@+id/checkBox1_설사"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="설사"
+                app:layout_constraintStart_toStartOf="@+id/checkBox1_구토"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1_구토" />
+
+            <CheckBox
+                android:id="@+id/checkBox7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="호흡곤란"
+                app:layout_constraintStart_toStartOf="@+id/checkBox1_가래"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox1_가래" />
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <CheckBox
+                android:id="@+id/checkBox1_후각"
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+
+                android:text="후각이상"
+                />
+
+
+            <CheckBox
+                android:id="@+id/checkBox1_기타"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타" />
+
+            <EditText
+                android:id="@+id/기타증상이름"
+                android:layout_width="80dp"
+                android:layout_height="39dp"
+                android:hint="기타증상이름"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <LinearLayout
+        android:layout_width="433dp"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="-21dp"
+        tools:layout_editor_absoluteY="292dp">
+
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="277dp"
+            android:layout_height="29dp"
+            android:text="2. 현재에도 위에서 표시한 증상이 있습니까?" />
+
+        <RadioGroup
+            android:id="@+id/checkitem_radiogroup2"
+            android:layout_width="139dp"
+            android:layout_height="33dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/checkitem_radioButtonyes2"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:text="예" />
+
+            <RadioButton
+                android:id="@+id/checkitem_radioButtonno2"
+                android:layout_width="83dp"
+                android:layout_height="31dp"
+                android:text="아니오" />
+
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question3"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="3. 코로나19 확진 판정을 받은 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup3"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes3"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno3"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion3"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/three_1question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="검사일"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/three_2question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="진단기관"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/three_3question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="입원/치료기관"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+
+                <EditText
+                    android:id="@+id/three_4question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="완치/퇴원일"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question4"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="4. 코로나19 관련 PCR 검사를 받은 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup4"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes4"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno4"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion4"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/four_1question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="검사일"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/four_2question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="검사기관"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/four_3question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="검사사유"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+
+                <EditText
+                    android:id="@+id/four_4question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="검사결과"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/four_5question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="결과확인일"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question5"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="5. 최근 14일 이내에 확진자와 접촉한 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup5"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes5"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno5"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion5"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우 접촉한 사람은 누구입니까" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/five_1question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="가족"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/five_2question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="친인척/친구"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/five_3question"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="기타"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question6"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="6. 최근 14일 이내에 확진자의 접촉자를 만난 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup6"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes6"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno6"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion6"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우 만난 사람은 누구입니까" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/six_1question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="가족"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/six_2question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="친인척/친구"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/six_3question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="기타"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question7"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="7. 최근 14일 이내에 확진자가 다녀간 장소에 방문한 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup7"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes7"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno7"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion7"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/seven_1question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="방문장소"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/seven_2question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="본인 방문일시"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/seven_3question"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="확진자 방문일시"
+                    android:inputType="textPersonName"
+                    android:textSize="12sp" />
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question8"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="8. 최근 1개월 이내에 확진자 발생 지역내(이태원, 강남, 홍대 등) 유흥업소나 다중이용업소, 종교행사 등 최근 집단감염발생 장소에 방문 한 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup8"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes8"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno8"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion8"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+
+        <EditText
+            android:id="@+id/eight_1question"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="방문한장소/일시"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question9"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="9. 14일 이내 종교행사 관련 집회에 참석하거나, 종교행사 관련자와 만난 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup9"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes9"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno9"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion9"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+
+        <EditText
+            android:id="@+id/nine_1question"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="방문한장소/일시,만난 사람/일시"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question10"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="10. 최근 1개원 이내에 해외를 방문한 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup10"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes10"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno10"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/miniquestion10"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+
+        <EditText
+            android:id="@+id/ten_1question"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="방문국/방문기간"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="161dp">
+
+            <TextView
+                android:id="@+id/question11"
+                android:layout_width="277dp"
+                android:layout_height="wrap_content"
+                android:text="11. 최근 14일 이내에 해외에서 귀국한 인원(14일 미경과자)를 만난 적이 있습니까?" />
+
+            <RadioGroup
+                android:id="@+id/checkitem_radiogroup11"
+                android:layout_width="139dp"
+                android:layout_height="33dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonyes11"
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:text="예" />
+
+                <RadioButton
+                    android:id="@+id/checkitem_radioButtonno11"
+                    android:layout_width="83dp"
+                    android:layout_height="31dp"
+                    android:text="아니오" />
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/miniquestion11"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:text="*예라고 답한경우" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/eleven_1question"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="만난사람"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/eleven_2question"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="마지막으로 만난 일자"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/eleven_3question"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="방문국"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/checksubmit"
+        android:onClick="onClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="제출하기"></Button>
+
+
+</LinearLayout>
+
+
+</ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
