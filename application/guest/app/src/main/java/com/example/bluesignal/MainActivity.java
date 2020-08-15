@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         scanner.stopScan();
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                          //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
-                            //    OpenVisitCard();
-                           // }
-                           // else{   //문진표를 작성하지 못했을 경우
+                            if(IsThereAnyReport()){ // 문진표를 작성했을 경우
+                                OpenVisitCard();
+                            }
+                            else{   //문진표를 작성하지 못했을 경우
                                 WriteReport();
-                          //  }
+                            }
                         }
                         else{
                             // Toast Message "스캔 실패"
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean WriteReport() {
-
+        //서버에 정보 보내기!
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
