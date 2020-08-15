@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
+
         main_name_text = (TextView)findViewById(R.id.main_name_text);
         main_phnNumber_text = (TextView)findViewById(R.id.main_phnNumber_text);
 
@@ -149,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void OpenVisitCard() {
         Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
-
         startActivity(intent);
     }
 
@@ -160,4 +160,5 @@ public class MainActivity extends AppCompatActivity {
     private boolean IsThereAnyInput(String input){
         return true;
     }
+
 }
