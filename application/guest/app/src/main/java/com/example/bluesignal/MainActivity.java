@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_change_info,R.id.nav_setting,R.id.nav_sign_out)
+                R.id.nav_change_info,R.id.nav_sign_out,R.id.nav_withdrawal)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -121,8 +121,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                         startActivityForResult(intent1,1);
                         break;
-                    case R.id.nav_setting:
-                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                    case R.id.nav_withdrawal:   // 계정 탈퇴
+                        guestInfo.deleteAllInfo();
+
+                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
