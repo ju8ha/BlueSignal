@@ -14,6 +14,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,16 +85,34 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
         radioGroup11.setOnCheckedChangeListener(this);
 
     }
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String currentDateandTime = sdf.format(new Date());
     public void onClick(View view){
 
-        if(Arrays.equals(check,equal)){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            String currentDateandTime = sdf.format(new Date());
-            Toast.makeText(getApplicationContext(),currentDateandTime, Toast.LENGTH_LONG).show();
-            Intent intent  = new Intent(this,VisitCardActivity.class);
-            guestInfo.setReport(currentDateandTime);
-            startActivity(intent);
-
+        if(Arrays.equals(check,equal)){Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
+                    boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                    if (success) {//회원등록 성공한 경우
+                        Intent intent  = new Intent(ReportActivity.this,VisitCardActivity.class);
+                        guestInfo.setReport(currentDateandTime);
+                        startActivity(intent);
+                    }
+                    else{//회원등록 실패한 경우
+                        Toast.makeText(getApplicationContext(),"회원 등록 실패",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+            //서버로 volley를 이용해서 요청을 함
+            ReportRequest registerRequest=new ReportRequest(guestInfo.getId(),currentDateandTime,responseListener);
+            RequestQueue queue= Volley.newRequestQueue(ReportActivity.this);
+            queue.add(registerRequest);
 
         }
         else if(Arrays.asList(check).contains(blank)){
@@ -110,8 +135,9 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
             });
 
             nopop.show();
-
         }
+
+
 
     }
 

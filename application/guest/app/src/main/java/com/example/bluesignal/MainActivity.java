@@ -16,7 +16,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.google.android.material.navigation.NavigationView;
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
@@ -44,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_change_info,R.id.nav_setting,R.id.nav_sign_out)
+                R.id.nav_change_info,R.id.nav_sign_out,R.id.nav_withdrawal)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -95,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
 //                        printText.setText(scanner.result());
                         System.out.println(scanner.result());
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                            if(IsThereAnyReport()){ // 문진표를 작성했을 경우
-                                OpenVisitCard();
-                            }
-                            else{   //문진표를 작성하지 못했을 경우
+                          //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
+                            //    OpenVisitCard();
+                           // }
+                           // else{   //문진표를 작성하지 못했을 경우
                                 WriteReport();
-                            }
+                          //  }
                         }
                         else{
                             // Toast Message "스캔 실패"
@@ -121,8 +128,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                         startActivityForResult(intent1,1);
                         break;
-                    case R.id.nav_setting:
-                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                    case R.id.nav_withdrawal:   // 계정 탈퇴
+                        guestInfo.deleteAllInfo();
+
+                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
@@ -142,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean WriteReport() {
 
+
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
@@ -154,11 +164,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyReport() {
-        return true;
+
+        return false;
     }
 
     private boolean IsThereAnyInput(String input){
-        return true;
+    return  true;
     }
 
 }
