@@ -68,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
                                 //intent.putExtra("log", "User");
 
                                 guestInfo.setAllInfo(userID,userPSWD,userName,userBirth,userNumber,userState,report);
-                              
+
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우

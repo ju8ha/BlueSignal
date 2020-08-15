@@ -2,48 +2,73 @@ package com.example.bluesignal;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
 
     Button visit_log_button;
     Button bluetooth_start_button;
+    ImageView drawer_image;
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
 
     GuestInfo guestInfo = GuestInfo.getInstance();
 
-    String guest_id, host_id, time1, date1, guest_status, host_status;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_change_info,R.id.nav_setting,R.id.nav_sign_out)
+                .setDrawerLayout(drawer)
+                .build();
+
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
+        drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
         //GetGuestInfoByServer();
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
+
+        drawer_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.RIGHT);
+            }
+        });
 
         visit_log_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 scanner.startScan();
-              
+
                 bluetooth_start_button.setEnabled(false);
-              
+
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -85,39 +110,36 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },10000);
 
-
-                guest_id = guestInfo.getId();
-                host_id = "1";
-                time1 = "2";
-                date1 = "3";
-                guest_status = "4";
-                host_status = "5";
-
-                        Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
-                                    boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
-                                    if (success) {//회원등록 성공한 경우
-                                    }
-                                    else{//회원등록 실패한 경우
-                                        Toast.makeText(getApplicationContext(),"회원 등록 실패",Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        };
-                        //서버로 volley를 이용해서 요청을 함
-                    RecordRequestActivity registerRequest=new RecordRequestActivity(guest_id, host_id, time1, date1, guest_status,host_status, responseListener);
-                        RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
-                        queue.add(registerRequest);
-                    }
-                });
-
             }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.nav_change_info:
+                        Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
+                        startActivityForResult(intent1,1);
+                        break;
+                    case R.id.nav_setting:
+                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                        startActivityForResult(intent2,1);
+                        break;
+                    case R.id.nav_sign_out:
+                        guestInfo.deleteAllInfo();
+                        Intent intent3 = new Intent(getApplicationContext(), SignInActivity.class);
+                        startActivityForResult(intent3,1);
+                        intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
+                }
+                return true;
+            }
+        });
+
+    }
 
     private Boolean WriteReport() {
         // 리포트(문진표) 액티비티 띄우기
