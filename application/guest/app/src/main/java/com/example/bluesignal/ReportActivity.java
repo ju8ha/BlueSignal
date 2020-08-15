@@ -25,14 +25,13 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
     public String[] equal={"no1","no2","no3","no4","no5","no6","no7","no8","no9","no10","no11","complete"};
     String blank="blank";
     public String[] reason=new String[11];
-    private Button btn_result;
+    GuestInfo guestInfo = GuestInfo.getInstance();
     private TextView question1,question2,question3,question4,question5,question6,question7,question8,question9,question10,question11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-        btn_result=findViewById(R.id.checksubmit);
 
         question1=(TextView)findViewById(R.id.question1);
         question2=(TextView)findViewById(R.id.question2);
@@ -76,13 +75,16 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
 
     }
     public void onClick(View view){
-        Toast.makeText(getApplicationContext(),Arrays.toString(check), Toast.LENGTH_LONG).show();
+
         if(Arrays.equals(check,equal)){
-            Intent intent  = new Intent(this,VisitCardActivity.class);
-            startActivity(intent);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String currentDateandTime = sdf.format(new Date());
-            //Toast.makeText(getApplicationContext(),"정상", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),currentDateandTime, Toast.LENGTH_LONG).show();
+            Intent intent  = new Intent(this,VisitCardActivity.class);
+            guestInfo.setReport(currentDateandTime);
+            startActivity(intent);
+
+
         }
         else if(Arrays.asList(check).contains(blank)){
             Toast.makeText(getApplicationContext(),"미기입", Toast.LENGTH_LONG).show();

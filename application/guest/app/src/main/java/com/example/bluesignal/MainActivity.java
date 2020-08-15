@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean WriteReport() {
+
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
