@@ -120,10 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         scanner.stopScan();
-//                        printText.setText(scanner.result());
-                        System.out.println("*******************");
-                        System.out.println(scanner.result());
-                        System.out.println("*******************");
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
                           //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
                             //    OpenVisitCard();
@@ -198,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Boolean WriteReport() {
-
 
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
