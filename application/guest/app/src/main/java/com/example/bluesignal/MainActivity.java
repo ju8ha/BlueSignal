@@ -147,16 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void GetGuestInfoByServer() {
-        //게스트 정보 서버에서 가져오기
-          String id = guestInfo.getId();
-
-
-        //해당 정보를 guestInfo에 저장
-        guestInfo.setNBPSR("name","birthday","phnNumber","status","report");
-
-    }
-
     private Boolean WriteReport() {
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
