@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -59,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         password_text = (EditText)findViewById(R.id.password_text);
         name_text = (EditText)findViewById(R.id.name_text);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
+        phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         //mEditTextState = (EditText)findViewById(R.id.editText_main_state);
         //mEditTextIssurvey= (EditText)findViewById(R.id.editText_main_issurvey);
