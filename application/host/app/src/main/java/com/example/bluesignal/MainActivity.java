@@ -2,6 +2,7 @@ package com.example.bluesignal;
 
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -95,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //내역 리스트로 이동
+                Intent intent = new Intent(MainActivity.this,VisitLogActivity.class);
+                startActivity(intent);
+
             }
         });
 
