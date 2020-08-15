@@ -32,9 +32,10 @@
         app:layout_constraintVertical_bias="0.901" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation = "horizontal"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="중복확인" />
-        </LinearLayout>
+    </LinearLayout>
 
 
     <EditText
@@ -106,8 +107,10 @@
         android:layout_height="48dp"
         android:onClick="onText3Clicked"
         android:text="birthday"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="368dp" />
+        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
     <EditText
         android:id="@+id/name_text"
