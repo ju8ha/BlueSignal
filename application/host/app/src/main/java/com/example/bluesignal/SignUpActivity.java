@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
         id_text = (EditText)findViewById(R.id.id_text);
         password_text = (EditText)findViewById(R.id.password_text);
         name_text = (EditText)findViewById(R.id.name_text);
+        //birthday_button = (Button)findViewById(R.id.birthday_button);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
 
         validateButton=findViewById(R.id.validateButton);
@@ -142,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 };
                 //서버로 volley를 이용해서 요청을 함
-                SignUpRequest registerRequest=new SignUpRequest(hostID, hostPass, hostName, hostNumber,responseListener);
+                SignUpRequest registerRequest=new SignUpRequest(hostID,hostPass, hostName, hostNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
                 queue.add(registerRequest);
             }

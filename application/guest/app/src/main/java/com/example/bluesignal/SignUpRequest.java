@@ -20,7 +20,7 @@ public class SignUpRequest extends StringRequest {
         map.put("userID",userID);
         map.put("userPassword",userPassword);
         map.put("userName",userName);
-        map.put("userBirth",userBirth);
+        map.put("userBirth", userBirth);
         map.put("userNumber",userNumber);
         //map.put("userState",userMajor);
     }
@@ -29,5 +29,7 @@ public class SignUpRequest extends StringRequest {
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;
     }
+
+
 }
 

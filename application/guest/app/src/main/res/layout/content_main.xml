@@ -13,64 +13,65 @@
         android:background="#4486c0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:layout_width="202dp"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.106">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="37dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
-                app:srcCompat="@android:drawable/alert_dark_frame" />
-
-            <TextView
-                android:id="@+id/guest_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아리따움"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp" />
-
-        </LinearLayout>
-
         <ImageView
             android:id="@+id/drawerImage"
-            android:layout_width="71dp"
-            android:layout_height="60dp"
+            android:layout_width="52dp"
+            android:layout_height="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.955"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/main_logo" />
+            app:layout_constraintVertical_bias="0.112"
+            app:srcCompat="@drawable/main_dot" />
 
         <TextView
-            android:id="@+id/guest_phnNumber_text"
+            android:id="@+id/main_phnNumber_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="236dp"
+            android:layout_marginTop="4dp"
             android:text="010-1111-2222"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintHorizontal_bias="0.141"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_text"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/main_name_text"
+            app:layout_constraintVertical_bias="0.008" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="28dp"
+            android:layout_height="23dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_phnNumber_text"
+            app:layout_constraintEnd_toStartOf="@+id/main_name_text"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.716"
+            app:srcCompat="@drawable/main_dot_green" />
+
+        <TextView
+            android:id="@+id/main_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="아리따움"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.242"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.096" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,7 +89,10 @@
             android:id="@+id/bluetooth_start_button"
             android:layout_width="278dp"
             android:layout_height="67dp"
+            android:background="#4486c0"
             android:text="입장권 발급"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
@@ -100,7 +104,10 @@
             android:id="@+id/visit_log_button"
             android:layout_width="278dp"
             android:layout_height="67dp"
+            android:background="#4486c0"
             android:text="방문 내역"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/bluetooth_start_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
