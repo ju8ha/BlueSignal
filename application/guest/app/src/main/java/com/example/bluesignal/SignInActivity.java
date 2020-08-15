@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
-                                guestInfo.setAllInfo(userID,userPSWD,userName,userBirth,userNumber,userState,is_survey);
+                                guestInfo.setAllInfo(userID,userPSWD,userName,userBirth,userNumber,userState,report);
                               
                                 startActivity(intent);
                             }
