@@ -86,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                     ButtonClickedState=false;
                 }
 
-
-
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -107,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,VisitLogActivity.class);
                 startActivity(intent);
-
             }
         });
 
