@@ -46,7 +46,6 @@ public class SignInActivity extends AppCompatActivity {
                 final String userID=id_text.getText().toString();
                 final String userPswd=password_text.getText().toString();
 
-
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
