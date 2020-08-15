@@ -23,9 +23,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bluesignal.ui.changeInfo.ChangeInfoFragment;
-import com.example.bluesignal.ui.setting.SettingFragment;
-import com.example.bluesignal.ui.signOut.SignOutFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import static android.widget.Toast.*;
@@ -120,16 +117,18 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case R.id.nav_change_info:
-                        Intent intent1 = new Intent(getApplicationContext(), ChangeInfoFragment.class);
+                        Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_setting:
-                        Intent intent2 = new Intent(getApplicationContext(), SettingFragment.class);
+                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
-                        Intent intent3 = new Intent(getApplicationContext(), SignOutFragment.class);
+                        guestInfo.deleteAllInfo();
+                        Intent intent3 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent3,1);
+                        intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
