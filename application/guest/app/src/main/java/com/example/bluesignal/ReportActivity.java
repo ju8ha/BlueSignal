@@ -12,9 +12,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
-
-
+import java.util.Date;
 
 
 public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
@@ -62,10 +62,6 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
 
 
 
-
-
-
-
         radioGroup1.setOnCheckedChangeListener(this);
         radioGroup2.setOnCheckedChangeListener(this);
         radioGroup3.setOnCheckedChangeListener(this);
@@ -84,6 +80,8 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
         if(Arrays.equals(check,equal)){
             Intent intent  = new Intent(this,VisitCardActivity.class);
             startActivity(intent);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String currentDateandTime = sdf.format(new Date());
             //Toast.makeText(getApplicationContext(),"정상", Toast.LENGTH_LONG).show();
         }
         else if(Arrays.asList(check).contains(blank)){

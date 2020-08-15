@@ -129,25 +129,6 @@ public class VisitLogActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected (MenuItem item)
-    {
-        Toast toast = Toast.makeText(getApplicationContext(),"", Toast.LENGTH_LONG);
-
-        switch(item.getItemId())
-        {
-            case R.id.문:
-                toast.setText("Select 문진표");
-                Intent intent = new Intent(
-                        getApplicationContext(), ReportActivity.class);
-                startActivity(intent);
-
-        }
-
-        // toast.show();
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
 
 
