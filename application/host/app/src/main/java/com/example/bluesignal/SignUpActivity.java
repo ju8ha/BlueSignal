@@ -114,7 +114,6 @@ public class SignUpActivity extends AppCompatActivity {
                 String hostID=id_text.getText().toString();
                 final String hostPass=password_text.getText().toString();
                 String hostName=name_text.getText().toString();
-                String hostBirth=birthday_button.getText().toString();
                 String hostNumber=phone_number_text.getText().toString();
 
                 Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
@@ -138,7 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 };
                 //서버로 volley를 이용해서 요청을 함
-                SignUpRequest registerRequest=new SignUpRequest(hostID,hostPass, hostName, hostBirth, hostNumber,responseListener);
+                SignUpRequest registerRequest=new SignUpRequest(hostID,hostPass, hostName, hostNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
                 queue.add(registerRequest);
             }

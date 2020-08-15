@@ -56,7 +56,6 @@ public class SignInActivity extends AppCompatActivity {
                                 String hostPswd = jasonObject.getString("hostPassword");
                                 String hostPass = jasonObject.getString("hostPassword");
                                 String hostName = jasonObject.getString("hostName");
-                                String hostBirth = jasonObject.getString("hostBirth");
                                 String hostNumber = jasonObject.getString("hostNumber");
                                 String hostState = jasonObject.getString("hostState");
 

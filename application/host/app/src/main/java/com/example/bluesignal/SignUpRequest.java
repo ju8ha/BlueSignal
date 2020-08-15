@@ -13,14 +13,13 @@ public class SignUpRequest extends StringRequest {
     final static  private String URL="http://seatrea.dothome.co.kr/Register.php";
     private Map<String,String> map;
 
-    public SignUpRequest(String hostID, String hostPassword, String hostName, String hostBirth, String hostNumber, Response.Listener<String>listener){
+    public SignUpRequest(String hostID, String hostPassword, String hostName, String hostNumber, Response.Listener<String>listener){
         super(Method.POST,URL,listener,null);//위 url에 post방식으로 값을 전송
 
         map=new HashMap<>();
         map.put("hostID",hostID);
         map.put("hostPassword",hostPassword);
         map.put("hostName",hostName);
-        map.put("hostBirth",hostBirth);
         map.put("hostNumber",hostNumber);
     }
 
