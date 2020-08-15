@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class VisitCardActivity extends MainActivity {
     TextView name_text;
-    TextView phone_number_text;
     TextView date;
     TextView time;
     GuestInfo guestInfo = GuestInfo.getInstance();
@@ -21,7 +20,7 @@ public class VisitCardActivity extends MainActivity {
         setContentView(R.layout.activity_visit_card);
 
         //이름 설정
-        name_text = (TextView) findViewById(R.id.name_text);
+        name_text = (TextView) findViewById(R.id.card_name_text);
         name_text.setText(guestInfo.getName());
 
 
