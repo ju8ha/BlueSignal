@@ -46,7 +46,6 @@ public class SignInActivity extends AppCompatActivity {
                 final String userID=id_text.getText().toString();
                 final String userPswd=password_text.getText().toString();
 
-
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -57,7 +56,6 @@ public class SignInActivity extends AppCompatActivity {
                             if (success) {//회원등록 성공한 경우
                                 String userID = jasonObject.getString("userID");
                                 String userPSWD = jasonObject.getString("userPassword");
-
                                 String userName = jasonObject.getString("userName");
                                 String userBirth = jasonObject.getString("userBirth");
                                 String userNumber = jasonObject.getString("userNumber");
@@ -67,8 +65,9 @@ public class SignInActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
+                                //intent.putExtra("log", "User");
+
                                 guestInfo.setAllInfo(userID,userPSWD,userName,userBirth,userNumber,userState,report);
-                              
 
                                 startActivity(intent);
                             }
