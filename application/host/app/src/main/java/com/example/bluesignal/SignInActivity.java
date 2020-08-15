@@ -1,15 +1,21 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SignInActivity extends AppCompatActivity {
     //로그인 activity
@@ -18,27 +24,60 @@ public class SignInActivity extends AppCompatActivity {
     TextView id;
     TextView pswd;
 
+    private EditText id_text, password_text;
+    HostInfo hostInfo = HostInfo.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        id_text=findViewById(R.id.id_text);
+        password_text=findViewById(R.id.password_text);
+
         sign_in_button = (Button)findViewById(R.id.sign_in_button);
 
-        sign_in_button.setOnClickListener(new View.OnClickListener(){
+        sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                id = (TextView)findViewById(R.id.id_text);
-                pswd = (TextView)findViewById(R.id.password_text);
-                if(check(id.getText().toString(), pswd.getText().toString())){
-                    //서버에 데이터가 존재할 경우
-                    //현재 id값과 정보를 다음 엑티비티에 넘겨주자
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivityForResult(intent,1);
-                }else{
-                    Toast_error_id_pswd();
-                }
+            public void onClick(View v) {
+                final String hostID=id_text.getText().toString();
+                final String hostPswd=password_text.getText().toString();
+
+                Response.Listener<String> responseListener=new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jasonObject=new JSONObject(response);
+                            boolean success=jasonObject.getBoolean("success");
+
+                            if (success) {//회원등록 성공한 경우
+                                String hostID = jasonObject.getString("hostID");
+                                String hostPswd = jasonObject.getString("hostPassword");
+                                String hostName = jasonObject.getString("hostName");
+                                String hostNumber = jasonObject.getString("hostNumber");
+                                String hostState = jasonObject.getString("hostState");
+
+                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+
+                                hostInfo.setAllInfo(hostID, hostPswd, hostName, hostNumber, hostState);
+
+                                startActivity(intent);
+                            }
+                            else{//회원등록 실패한 경우
+                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                return;
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                SignInRequest loginRequest=new SignInRequest(hostID, hostPswd, responseListener);
+                RequestQueue queue= Volley.newRequestQueue(SignInActivity.this);
+                queue.add(loginRequest);
             }
         });
 
