@@ -4,21 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class SignUpActivity extends AppCompatActivity {
     //회원 가입 activity
     Button sign_up_button;
     Button back_button;
-    Button birthday_button;
-    int mYear, mMonth, mDay;
+
+    private TextView editText;
+    private Date currentDate;
+    private int iYear, iMonth, iDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,60 +50,59 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
+        editText=(TextView)findViewById(R.id.birthday_text);
 
-        Calendar cal = new GregorianCalendar();
+        getDateToday();
 
-        mYear = cal.get(Calendar.YEAR);
 
-        mMonth = cal.get(Calendar.MONTH);
-
-        mDay = cal.get(Calendar.DAY_OF_MONTH);
 
     }
+    protected void getDateToday(){
+        currentDate=new Date();
+        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
+        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
 
-    public void mOnClick(View v){
-
-        switch(v.getId()){
-
-            //날짜 대화상자 버튼이 눌리면 대화상자를 보여줌
-
-            case R.id.birthday_button:
-
-                //여기서 리스너도 등록함
-
-                new DatePickerDialog(this, mDateSetListener, mYear,
-
-                        mMonth, mDay).show();
-
-                break;
-        }
-
+        editText.setText(sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일");
     }
 
-    DatePickerDialog.OnDateSetListener mDateSetListener =
+    protected void updateEditText(){
+        StringBuffer sb =new StringBuffer();
+        editText.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
+    }
 
-            new DatePickerDialog.OnDateSetListener() {
 
+    public void onText3Clicked(View v){
+        String strDate = editText.getText().toString();
+        strDate=strDate.replace("년","/").replace("월","/").replace("일","/");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
+
+        try{
+            Date pickDate = new Date(strDate);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(pickDate);
+            int yy=cal.get(Calendar.YEAR);
+            int mm=cal.get(Calendar.MONTH);
+            int dd=cal.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, new DatePickerDialog.OnDateSetListener() {
                 @Override
-                public void onDateSet(DatePicker view, int year, int monthOfYear,
-
-                                      int dayOfMonth) {
-
-                    // TODO Auto-generated method stub
-
-                    //사용자가 입력한 값을 가져온뒤
-                    mYear = year;
-
-
-                    mMonth = monthOfYear;
-
-                    mDay = dayOfMonth;
-                    birthday_button = (Button)findViewById(R.id.birthday_button);
-                    birthday_button.setText(mYear+"년"+mMonth+"월"+mDay+"일");
+                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                    iYear = year;
+                    iMonth = month+1;
+                    iDay = day;
+                    updateEditText();
                 }
+            }, yy, mm, dd);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-            };
+            dialog.show();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 }

@@ -36,7 +36,6 @@ public class VisitCardActivity extends MainActivity {
         SimpleDateFormat simpleDate = new SimpleDateFormat("hh:mm:ss");
         String getTime = simpleDate.format(mDate);
         time.setText(getTime);
-
     }
 
     //x 누르면 뒤로 감

@@ -63,17 +63,14 @@ public class GuestInfo {
         return guestInfo;
     }
 
-    public void setNBPSR(String name, String birthday, String phnNumber,String status, String report){
+    public void setAllInfo(String id, String pswd, String name, String birthday, String phnNumber,String status, String report){
+        this.id = id;
+        this.pswd = pswd;
         this.name = name;
         this.birthday = birthday;
         this.phnNumber = phnNumber;
         this.status = status;
         this.report = report;
-    }
-
-    public void setIDPSWD(String id, String pswd){
-        this.id = id;
-        this.pswd = pswd;
     }
 
     public boolean isInfected(){

@@ -61,15 +61,12 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
-        GetGuestInfoByServer();
-
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
 
         drawer_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast();
                 drawer.openDrawer(Gravity.RIGHT);
             }
         });
@@ -178,9 +175,5 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean IsThereAnyInput(String input){
         return true;
-    }
-
-    private void Toast(){
-        Toast.makeText(this,"클릭", LENGTH_SHORT).show();
     }
 }
