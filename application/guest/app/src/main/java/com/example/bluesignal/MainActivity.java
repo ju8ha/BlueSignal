@@ -22,9 +22,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
@@ -117,12 +123,12 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(scanner.result());
                         System.out.println("*******************");
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                            if(IsThereAnyReport()){ // 문진표를 작성했을 경우
-                                OpenVisitCard();
-                            }
-                            else{   //문진표를 작성하지 못했을 경우
+                          //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
+                            //    OpenVisitCard();
+                           // }
+                           // else{   //문진표를 작성하지 못했을 경우
                                 WriteReport();
-                            }
+                          //  }
                         }
                         else{
                             // Toast Message "스캔 실패"
@@ -167,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean WriteReport() {
 
+
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
@@ -179,11 +186,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyReport() {
-        return true;
+
+        return false;
     }
 
     private boolean IsThereAnyInput(String input){
-        return true;
+    return  true;
     }
 
 }
