@@ -37,6 +37,8 @@ public class GuestInfo{
         return phnNumber;
     }
 
+    public  String getReport() { return report; }
+
     public void setId(String id) {
         this.id = id;
     }

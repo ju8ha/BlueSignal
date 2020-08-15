@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest;
 public class ReportRequest extends StringRequest {
     //서버 url 설정(php파일 연동)
     final static  private String URL="http://seatrea.dothome.co.kr/Survey.php";
+
     private Map<String,String> map;
 
     public ReportRequest(String userID,  String report, Response.Listener<String>listener){
@@ -18,7 +19,6 @@ public class ReportRequest extends StringRequest {
         map=new HashMap<>();
         map.put("userID",userID);
         map.put("is_survey",report);
-        //map.put("userState",userMajor);
     }
 
     @Override
