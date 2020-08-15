@@ -1,13 +1,18 @@
 package com.example.bluesignal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -15,10 +20,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Locale;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
   
     GuestInfo guestInfo = GuestInfo.getInstance();
+    Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -89,18 +99,27 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 scanner.startScan();
 
                 bluetooth_start_button.setEnabled(false);
+                bluetooth_start_button.setBackgroundColor(Color.parseColor("#58ACFA"));
 
                 Handler handler = new Handler();
+
+                CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
+                    }
+
+                    public void onFinish() {
+                        bluetooth_start_button.setText("입장권 발급");
+                    }
+                }.start();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         scanner.stopScan();
-//                        printText.setText(scanner.result());
-                        //System.out.println(scanner.result());
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
                           //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
                             //    OpenVisitCard();
@@ -113,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                             // Toast Message "스캔 실패"
                         }
                         bluetooth_start_button.setEnabled(true);
+                        bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
                 },10000);
 
@@ -129,8 +149,32 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_withdrawal:   // 계정 탈퇴
-                        guestInfo.deleteAllInfo();
+                        Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
+                                    boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                                    if (success) {//회원등록 성공한 경우
+                                        Toast.makeText(getApplicationContext(), "delete success", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else{//회원등록 실패한 경우
+                                        Toast.makeText(getApplicationContext(), "delete fail", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        //서버로 volley를 이용해서 요청을 함
+                        DeleteRequest deleteRequest=new DeleteRequest(guestInfo.getId(),responseListener);
+                        RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
+                        queue.add(deleteRequest);
 
+                        guestInfo.deleteAllInfo();
                         Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent2,1);
                         break;
