@@ -14,6 +14,7 @@ public class DeleteRequest extends StringRequest {
     final static  private String URL="http://seatrea.dothome.co.kr/delete.php";
 
     private Map<String,String> map;
+
     public DeleteRequest(String id, Response.Listener<String>listener){ //id -> 전체 제거
         super(Request.Method.POST,URL,listener,null);//위 url에 post방식으로 값을 전송
         map=new HashMap<>();
