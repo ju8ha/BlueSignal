@@ -1,13 +1,18 @@
 package com.example.bluesignal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -15,8 +20,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
@@ -32,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
   
     GuestInfo guestInfo = GuestInfo.getInstance();
+    Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -82,18 +91,31 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 scanner.startScan();
 
                 bluetooth_start_button.setEnabled(false);
+                bluetooth_start_button.setBackgroundColor(Color.parseColor("#58ACFA"));
 
                 Handler handler = new Handler();
+
+                CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
+                    }
+
+                    public void onFinish() {
+                        bluetooth_start_button.setText("입장권 발급");
+                    }
+                }.start();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         scanner.stopScan();
 //                        printText.setText(scanner.result());
+                        System.out.println("*******************");
                         System.out.println(scanner.result());
+                        System.out.println("*******************");
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
                             if(IsThereAnyReport()){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
@@ -106,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                             // Toast Message "스캔 실패"
                         }
                         bluetooth_start_button.setEnabled(true);
+                        bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
                 },10000);
 
