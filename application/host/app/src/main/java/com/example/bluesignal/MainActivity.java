@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         advertiser.stopAdvertise();
                         bluetooth_start_button.setSelected(false);
                         ButtonClickedState=false;
+                        bluetooth_start_button.setText("신호 전송 시작");
+                        
                     }
                 },10000);
             }
