@@ -31,20 +31,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
 
-    <Button
-        android:id="@+id/birthday_button"
-        android:layout_width="210dp"
-        android:layout_height="50dp"
-        android:background="#FFFFFF"
-        android:onClick="mOnClick"
-        android:text="생일"
-        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,15 +62,14 @@
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="296dp"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.921" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/password_text"
@@ -132,13 +117,14 @@
 
     <TextView
         android:id="@+id/birthday_text"
-        android:layout_width="213dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="326dp"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:onClick="onText3Clicked"
         android:text="Birthday"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
+        app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
