@@ -139,13 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
     private Boolean WriteReport() {
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
