@@ -46,6 +46,7 @@ public class SignInActivity extends AppCompatActivity {
                 final String userID=id_text.getText().toString();
                 final String userPswd=password_text.getText().toString();
 
+
                 Response.Listener<String> responseListener=new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -68,6 +69,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                 guestInfo.setAllInfo(userID,userPSWD,userName,userBirth,userNumber,userState,report);
                               
+
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우

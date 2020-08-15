@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
-
+  
     GuestInfo guestInfo = GuestInfo.getInstance();
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -148,11 +148,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void OpenVisitCard() {
         Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
+
         startActivity(intent);
     }
 
     private boolean IsThereAnyReport() {
-        return false;
+        return true;
     }
 
     private boolean IsThereAnyInput(String input){
