@@ -49,7 +49,7 @@ public class HostInfo {
         return hostInfo;
     }
 
-    public void setAllInfo(String id, String pswd, String name, String birthday, String phnNumber,String status, String report){
+    public void setAllInfo(String id, String pswd, String name, String phnNumber,String status){
         this.id = id;
         this.pswd = pswd;
         this.name = name;

@@ -1,7 +1,5 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class SignInActivity extends AppCompatActivity {
     //로그인 activity
@@ -26,6 +25,7 @@ public class SignInActivity extends AppCompatActivity {
     TextView pswd;
 
     private EditText id_text, password_text;
+    HostInfo hostInfo = HostInfo.getInstance();
 
 
     @Override
@@ -54,17 +54,14 @@ public class SignInActivity extends AppCompatActivity {
                             if (success) {//회원등록 성공한 경우
                                 String hostID = jasonObject.getString("hostID");
                                 String hostPswd = jasonObject.getString("hostPassword");
-                                String hostPass = jasonObject.getString("hostPassword");
                                 String hostName = jasonObject.getString("hostName");
-                                String hostBirth = jasonObject.getString("hostBirth");
                                 String hostNumber = jasonObject.getString("hostNumber");
                                 String hostState = jasonObject.getString("hostState");
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
-                                //guestInfo.setIDPSWD(userID,userPswd);
-                                //guestInfo.setNBPSR(userName, userBirth, userNumber, userState);
+                                hostInfo.setAllInfo(hostID, hostPswd, hostName, hostNumber, hostState);
 
                                 startActivity(intent);
                             }
