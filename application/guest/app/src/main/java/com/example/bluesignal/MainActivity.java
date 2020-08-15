@@ -22,7 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
@@ -157,6 +159,34 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
+
+
+                        Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
+                                    boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                                    if (success) {//회원등록 성공한 경우
+                                        Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else{//회원등록 실패한 경우
+                                        Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        //서버로 volley를 이용해서 요청을 함
+                        DeleteRequest deleteRequest=new DeleteRequest(guestInfo.getId(),responseListener);
+                        RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
+                        queue.add(deleteRequest);
+
+
                         guestInfo.deleteAllInfo();
                         Intent intent3 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent3,1);
