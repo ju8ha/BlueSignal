@@ -7,34 +7,43 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:id="@+id/top"
+        android:layout_width="413dp"
+        android:layout_height="360dp"
+        android:background="#4486c0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:id="@+id/bluetooth_start_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="입장권 발급"
+        <LinearLayout
+            android:layout_width="202dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.72" />
+            app:layout_constraintVertical_bias="0.106">
 
-        <Button
-            android:id="@+id/visit_log_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="방문 내역"
-            app:layout_constraintBottom_toTopOf="@+id/bluetooth_start_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.941" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="37dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                app:srcCompat="@android:drawable/alert_dark_frame" />
+
+            <TextView
+                android:id="@+id/guest_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아리따움"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/drawerImage"
@@ -49,16 +58,53 @@
             app:srcCompat="@drawable/main_logo" />
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/guest_phnNumber_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GUEST 메인화면"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/visit_log_button"
+            android:layout_marginBottom="236dp"
+            android:text="010-1111-2222"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_text"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bot"
+        android:layout_width="416dp"
+        android:layout_height="364dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.982">
+
+        <Button
+            android:id="@+id/bluetooth_start_button"
+            android:layout_width="278dp"
+            android:layout_height="67dp"
+            android:text="입장권 발급"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.578" />
+            app:layout_constraintVertical_bias="0.714" />
+
+        <Button
+            android:id="@+id/visit_log_button"
+            android:layout_width="278dp"
+            android:layout_height="67dp"
+            android:text="방문 내역"
+            app:layout_constraintBottom_toTopOf="@+id/bluetooth_start_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
