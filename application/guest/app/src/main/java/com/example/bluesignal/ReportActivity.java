@@ -1,8 +1,10 @@
 package com.example.bluesignal;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -26,6 +29,7 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
     String blank="blank";
     public String[] reason=new String[11];
     GuestInfo guestInfo = GuestInfo.getInstance();
+    ArrayList<String> list = new ArrayList<String>();
     private TextView question1,question2,question3,question4,question5,question6,question7,question8,question9,question10,question11;
 
     @Override
@@ -90,8 +94,23 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
             Toast.makeText(getApplicationContext(),"미기입", Toast.LENGTH_LONG).show();
         }
         else if(!Arrays.equals(check,equal)){
+           /* for(String s:reason){
+                if(!s.equals(""))
+                    list.add(s);
+            }
+            Toast.makeText(getApplicationContext(),list.toString(), Toast.LENGTH_LONG).show();*/
+            AlertDialog.Builder nopop=new AlertDialog.Builder(this);
+            nopop.setMessage("건물출입이 불가능합니다.");
+            nopop.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent nointent= new Intent(ReportActivity.this,MainActivity.class);
+                    startActivity(nointent);
+                }
+            });
 
-            Toast.makeText(getApplicationContext(),Arrays.toString(reason), Toast.LENGTH_LONG).show();
+            nopop.show();
+
         }
 
     }
