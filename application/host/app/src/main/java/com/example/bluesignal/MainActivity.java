@@ -118,33 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_setting:
-                        Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
-                                    boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
-                                    if (success) {//회원등록 성공한 경우
-                                        Toast.makeText(getApplicationContext(), "delete success", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else{//회원등록 실패한 경우
-                                        Toast.makeText(getApplicationContext(), "delete fail", Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        };
-                        //서버로 volley를 이용해서 요청을 함
-                        DeleteRequest deleteRequest=new DeleteRequest( hostInfo.getId(),responseListener);
-                        RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
-                        queue.add(deleteRequest);
-
-                        hostInfo.deleteAllInfo();
-                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, WithdrawalActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
