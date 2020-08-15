@@ -1,6 +1,5 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -24,13 +23,7 @@ import java.util.GregorianCalendar;
 
 public class ChangeDetail extends AppCompatActivity {
 
-    Button change_detail;
     GuestInfo guestInfo = GuestInfo.getInstance();
-    private String id;
-    private String pswd;
-    private String name;
-    private String birthday;
-    private String phnNumber;
 
     private EditText id_text;
     private EditText name_text;
@@ -44,6 +37,10 @@ public class ChangeDetail extends AppCompatActivity {
 
     int mYear, mMonth, mDay;
 
+//    private RequestQueue queue;
+//    private Response.Listener<String> responseListener;
+//    private ChangeRequest changeRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,23 +53,14 @@ public class ChangeDetail extends AppCompatActivity {
         phnNumber_text = (EditText) findViewById(R.id.phone_number_text);
 
         id_text.setText(guestInfo.getId());
+        id_text.setEnabled(false);
         name_text.setText(guestInfo.getName());
         birthday_button.setText(guestInfo.getBirthday());
         phnNumber_text.setText(guestInfo.getPhnNumber());
 
-
         back_button = (Button)findViewById(R.id.back_button);
-        modify_button = (Button)findViewById(R.id.modify_button);
+        modify_button = (Button)findViewById(R.id.modify_detail_button);
         change_password_button = (Button)findViewById(R.id.change_password_button);
-
-
-        back_button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                startActivityForResult(intent,1);
-            }
-        });
 
         //현재 날짜와 시간을 가져오기위한 Calendar 인스턴스 선언
 
@@ -84,6 +72,52 @@ public class ChangeDetail extends AppCompatActivity {
 
         mDay = cal.get(Calendar.DAY_OF_MONTH);
 
+        modify_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String input=password_text.getText().toString();
+
+                if (input.equals(guestInfo.getPswd())){ //비밀번호가 맞을 경우
+                    guestInfo.setName(name_text.getText().toString());
+                    guestInfo.setBirthday(birthday_button.getText().toString());
+                    guestInfo.setPhnNumber(phnNumber_text.getText().toString());
+                    Toast.makeText(getApplicationContext(), "modify success", Toast.LENGTH_SHORT).show();
+
+                    Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
+                                boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                                if (success) {//회원등록 성공한 경우
+                                    Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ChangeDetail.this, ChangeDetail.class);
+                                    startActivity(intent);
+                                }
+                                else{//회원등록 실패한 경우
+                                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    //서버로 volley를 이용해서 요청을 함
+                    ChangeRequest changeRequest=new ChangeRequest(guestInfo.getName(), guestInfo.getBirthday(), guestInfo.getPhnNumber(),responseListener);
+                    RequestQueue queue= Volley.newRequestQueue(ChangeDetail.this);
+                    queue.add(changeRequest);
+
+
+                }else{//비밀번호를 잘못 입력하였습니다 ~
+                    Toast.makeText(getApplicationContext(), "password error", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
     }
 
 
@@ -94,21 +128,6 @@ public class ChangeDetail extends AppCompatActivity {
     public void onBackButtonClicked(View v){ //드로어로 가야함 수정해줄 것
         startActivity(new Intent(ChangeDetail.this, MainActivity.class));
     }
-
-
-    public void onModifyButtonClicked(View v){
-        String inputPswd=password_text.getText().toString();
-        if(inputPswd.equals(guestInfo.getPswd())) {
-            guestInfo.setName(name_text.getText().toString());
-            guestInfo.setBirthday(birthday_button.getText().toString());
-            guestInfo.setPhnNumber(phnNumber_text.getText().toString());
-            Toast.makeText(getApplicationContext(), "modify success", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(ChangeDetail.this, ChangeDetail.class));
-        }else{
-            Toast.makeText(getApplicationContext(), "password error", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     public void onBirthdayButtonClicked(View v){
 

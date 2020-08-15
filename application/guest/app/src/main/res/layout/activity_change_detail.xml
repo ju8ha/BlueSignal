@@ -100,10 +100,9 @@
         app:layout_constraintVertical_bias="0.634" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/modify_detail_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onModifyButtonClicked"
         android:text="modify"
         app:layout_constraintBottom_toTopOf="@+id/back_button"
         app:layout_constraintEnd_toEndOf="parent"
