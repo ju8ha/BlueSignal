@@ -153,14 +153,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_withdrawal:   // 계정 탈퇴
-                        guestInfo.deleteAllInfo();
-
-                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
-                        startActivityForResult(intent2,1);
-                        break;
-                    case R.id.nav_sign_out:
-
-
                         Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                             @Override
                             public void onResponse(String response) {
@@ -168,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                                     boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                     if (success) {//회원등록 성공한 경우
-                                        Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "delete success", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(MainActivity.this, MainActivity.class);
                                         startActivity(intent);
                                     }
                                     else{//회원등록 실패한 경우
-                                        Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "delete fail", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                 } catch (JSONException e) {
@@ -186,7 +178,11 @@ public class MainActivity extends AppCompatActivity {
                         RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
                         queue.add(deleteRequest);
 
-
+                        guestInfo.deleteAllInfo();
+                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
+                        startActivityForResult(intent2,1);
+                        break;
+                    case R.id.nav_sign_out:
                         guestInfo.deleteAllInfo();
                         Intent intent3 = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivityForResult(intent3,1);
