@@ -7,7 +7,7 @@
     tools:context=".VisitCardActivity">
 
     <TextView
-        android:id="@+id/name_text"
+        android:id="@+id/main_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/phone_number_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
