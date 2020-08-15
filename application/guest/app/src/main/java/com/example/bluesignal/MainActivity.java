@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     Button visit_log_button;
     Button bluetooth_start_button;
     ImageView drawer_image;
+    TextView guest_id_text;
+    TextView guest_name_text;
+    TextView guest_phnNumber_text;
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
@@ -57,14 +62,20 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
+        guest_name_text = (TextView)findViewById(R.id.guest_name_text);
+        guest_phnNumber_text = (TextView)findViewById(R.id.guest_phnNumber_text);
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         scanner = new MyBluetoothLeScanner(manager,this.getApplicationContext(), this);
+        guest_name_text.setText(guestInfo.getName());
+        guest_name_text.setText(guestInfo.getPhnNumber());
 
         drawer_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(Gravity.RIGHT);
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
+                guest_id_text.setText(guestInfo.getId());
             }
         });
 
