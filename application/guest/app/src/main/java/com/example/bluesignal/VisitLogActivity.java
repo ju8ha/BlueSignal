@@ -180,6 +180,7 @@ public class VisitLogActivity extends AppCompatActivity {
     }
 
 }
+
 /*
 public class VisitLogActivity extends AppCompatActivity {
 
