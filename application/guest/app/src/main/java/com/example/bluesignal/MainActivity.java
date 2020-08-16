@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                             else{//회원등록 실패한 경우
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                                 return;
-
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
