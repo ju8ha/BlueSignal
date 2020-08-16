@@ -37,13 +37,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        //아이디 값 찾아주기
         id_text = (EditText)findViewById(R.id.id_text);
         password_text = (EditText)findViewById(R.id.password_text);
         name_text = (EditText)findViewById(R.id.name_text);
-        //birthday_button = (Button)findViewById(R.id.birthday_button);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
         phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
         final String hostID=id_text.getText().toString();
         validateButton=findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new View.OnClickListener() {//id중복체크
@@ -56,7 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 if(hostID.equals("")){
                     AlertDialog.Builder builder=new AlertDialog.Builder( SignUpActivity.this );
-                    dialog=builder.setMessage("아이디는 빈 칸일 수 없습니다")
+                    dialog=builder.setMessage("아이디는 빈 칸일 수 없습니다.")
                             .setPositiveButton("확인",null)
                             .create();
                     dialog.show();
@@ -122,12 +121,12 @@ public class SignUpActivity extends AppCompatActivity {
                             JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                             boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                             if (success) {//회원등록 성공한 경우
-                                Toast.makeText(getApplicationContext(), "회원 등록 성공", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "회원 등록 성공!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
-                                Toast.makeText(getApplicationContext(),"회원 등록 실패",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"회원 등록 실패!",Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         } catch (JSONException e) {

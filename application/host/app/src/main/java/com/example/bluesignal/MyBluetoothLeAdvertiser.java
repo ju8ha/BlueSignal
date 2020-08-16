@@ -8,15 +8,11 @@ import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.ParcelUuid;
-
 
 import androidx.fragment.app.FragmentActivity;
 
 import java.nio.charset.Charset;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class MyBluetoothLeAdvertiser {
     public final String UUID ="CDB7950D-73F1-4D4D-8E47-C090502DBD63";
@@ -34,13 +30,11 @@ public class MyBluetoothLeAdvertiser {
         @Override
         public void onStartSuccess(AdvertiseSettings settingsInEffect) {
             super.onStartSuccess(settingsInEffect);
-            System.out.println("advertising---O");
         }
 
         @Override
         public void onStartFailure(int errorCode){
             super.onStartFailure(errorCode);
-            System.out.println("advertising---X");
         }
     };
 

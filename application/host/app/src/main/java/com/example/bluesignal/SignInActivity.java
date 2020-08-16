@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +20,10 @@ public class SignInActivity extends AppCompatActivity {
     //로그인 activity
     Button sign_in_button;
     Button sign_up_button;
-    TextView id;
-    TextView pswd;
 
     private EditText id_text, password_text;
-    HostInfo hostInfo = HostInfo.getInstance();
 
+    HostInfo hostInfo = HostInfo.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +55,7 @@ public class SignInActivity extends AppCompatActivity {
                                 String hostNumber = jasonObject.getString("hostNumber");
                                 String hostState = jasonObject.getString("hostState");
 
-                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
                                 hostInfo.setAllInfo(hostID, hostPswd, hostName, hostNumber, hostState);
@@ -66,7 +63,7 @@ public class SignInActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
-                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
                                 return;
 
                             }
