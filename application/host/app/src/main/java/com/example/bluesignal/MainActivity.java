@@ -3,6 +3,7 @@ package com.example.bluesignal;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -105,12 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 if(ButtonClickedState==false){
                     bluetooth_start_button.setSelected(true);
                     bluetooth_start_button.setText("신호 전송 중지");
+                    bluetooth_start_button.setBackgroundColor(Color.parseColor("#58ACFA"));
                     advertiser.startAdvertise(hostInfo.getId());
                     ButtonClickedState = true;
                 }else{
                     bluetooth_start_button.setSelected(false);
                     bluetooth_start_button.setText("신호 전송 시작");
                     advertiser.stopAdvertise();
+                    bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     ButtonClickedState = false;
                 }
 
