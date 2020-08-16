@@ -18,7 +18,7 @@ app:layout_constraintTop_toTopOf="parent">
 
 <TextView
     android:id="@+id/확인내용"
-    android:layout_width="282dp"
+    android:layout_width="274dp"
     android:layout_height="50dp"
     android:paddingLeft="5dp"
     android:gravity="center_vertical"
@@ -69,6 +69,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:orientation="horizontal"
@@ -77,7 +79,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question1"
-                android:layout_width="282dp"
+                android:layout_width="274dp"
+
                 android:layout_height="39dp"
                 android:textColor="@android:color/black"
                 android:text="1. 최근 14일 이내에 아래의 증상을 경험한 적이 있습니까?"
@@ -94,15 +97,18 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonyes1"
-                    android:layout_width="57dp"
-                    android:layout_height="39dp"
-                    android:text="예" />
+                    android:layout_width="56dp"
+
+                    android:layout_height="match_parent"
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno1"
                     android:layout_width="wrap_content"
                     android:layout_height="39dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -135,19 +141,21 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/checkBox1_오한"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
-                android:text="오한" />
+                android:text="오한"
+                android:buttonTint="#4486c0"/>
 
             <CheckBox
                 android:id="@+id/checkBox1_발열"
                 android:layout_width="104dp"
                 android:layout_height="wrap_content"
-                android:text="발열" />
+                android:text="발열"
+                android:buttonTint="#4486c0"/>
 
             <CheckBox
                 android:id="@+id/checkBox1_기침"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-
+                android:buttonTint="#4486c0"
                 android:text="기침"
                 app:layout_constraintStart_toEndOf="@+id/checkBox1_발열"
                 app:layout_constraintTop_toBottomOf="@+id/miniquestion1" />
@@ -159,7 +167,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 android:text="가래"
                 app:layout_constraintStart_toEndOf="@+id/checkBox1_근육통"
-                app:layout_constraintTop_toBottomOf="@+id/miniquestion1" />
+                app:layout_constraintTop_toBottomOf="@+id/miniquestion1"
+                android:buttonTint="#4486c0"/>
         </TableRow>
 
         <TableRow>
@@ -169,13 +178,14 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/checkBox1_인후통"
                 android:layout_width="80dp"
                 android:layout_height="26dp"
-
+                android:buttonTint="#4486c0"
                 android:text="인후통" />
 
             <CheckBox
                 android:id="@+id/checkBox1_근육통"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="#4486c0"
                 android:text="근육통"
                 app:layout_constraintStart_toStartOf="@+id/checkBox1_기침"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox1_기침" />
@@ -184,6 +194,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/checkBox1_구토"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:buttonTint="#4486c0"
                 android:text="구토"
                 app:layout_constraintStart_toStartOf="@+id/checkBox1_오한"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox1_오한" />
@@ -193,6 +204,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
+                android:buttonTint="#4486c0"
                 android:text="콧물, 코막힘" />
 
         </TableRow>
@@ -202,6 +214,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox1_두통"
                 android:layout_width="80dp"
+                android:buttonTint="#4486c0"
                 android:layout_height="wrap_content"
                 android:text="두통"
                 app:layout_constraintStart_toStartOf="@+id/checkBox7"
@@ -210,6 +223,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox1_복통"
                 android:layout_width="wrap_content"
+                android:buttonTint="#4486c0"
                 android:layout_height="wrap_content"
                 android:text="복통"
                 app:layout_constraintStart_toStartOf="@+id/checkBox1_근육통"
@@ -218,6 +232,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox1_설사"
                 android:layout_width="80dp"
+                android:buttonTint="#4486c0"
                 android:layout_height="wrap_content"
                 android:text="설사"
                 app:layout_constraintStart_toStartOf="@+id/checkBox1_구토"
@@ -226,6 +241,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox7"
                 android:layout_width="wrap_content"
+                android:buttonTint="#4486c0"
                 android:layout_height="wrap_content"
                 android:text="호흡곤란"
                 app:layout_constraintStart_toStartOf="@+id/checkBox1_가래"
@@ -239,6 +255,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox1_후각"
                 android:layout_width="100dp"
+                android:buttonTint="#4486c0"
                 android:layout_height="22dp"
 
                 android:text="후각이상"
@@ -248,6 +265,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             <CheckBox
                 android:id="@+id/checkBox1_기타"
                 android:layout_width="wrap_content"
+                android:buttonTint="#4486c0"
                 android:layout_height="wrap_content"
                 android:text="기타" />
 
@@ -263,6 +281,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
 
     <LinearLayout
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:layout_width="433dp"
         android:layout_height="65dp"
         android:orientation="horizontal"
@@ -271,7 +291,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
         <TextView
             android:id="@+id/question2"
-            android:layout_width="277dp"
+            android:layout_width="274dp"
             android:layout_height="29dp"
             android:text="2. 현재에도 위에서 표시한 증상이 있습니까?"
             android:textColor="@android:color/black"/>
@@ -286,13 +306,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/checkitem_radioButtonyes2"
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
-                android:text="예" />
+                android:text="예"
+                android:buttonTint="#4486c0"/>
 
             <RadioButton
                 android:id="@+id/checkitem_radioButtonno2"
                 android:layout_width="83dp"
                 android:layout_height="31dp"
-                android:text="아니오" />
+                android:text="아니오"
+                android:buttonTint="#4486c0"/>
 
 
         </RadioGroup>
@@ -305,6 +327,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -313,7 +337,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question3"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:text="3. 코로나19 확진 판정을 받은 적이 있습니까?"
                 android:textColor="@android:color/black"/>
@@ -328,13 +352,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes3"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno3"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -405,6 +431,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -413,7 +441,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question4"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:text="4. 코로나19 관련 PCR 검사를 받은 적이 있습니까?"
                 android:textColor="@android:color/black"/>
@@ -428,13 +456,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes4"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno4"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -455,7 +485,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/four_1question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="검사일"
@@ -464,7 +494,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/four_2question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="검사기관"
@@ -476,7 +506,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/four_3question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="검사사유"
@@ -486,7 +516,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/four_4question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="검사결과"
@@ -495,7 +525,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/four_5question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="결과확인일"
@@ -514,6 +544,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -522,7 +554,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question5"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:text="5. 최근 14일 이내에 확진자와 접촉한 적이 있습니까?"
                 android:textColor="@android:color/black"/>
@@ -537,13 +569,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes5"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno5"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -564,7 +598,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/five_1question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="가족"
@@ -573,7 +607,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/five_2question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="친인척/친구"
@@ -582,7 +616,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/five_3question"
-                    android:layout_width="90dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="기타"
@@ -603,6 +637,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -611,7 +647,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question6"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:text="6. 최근 14일 이내에 확진자의 접촉자를 만난 적이 있습니까?"
                 android:textColor="@android:color/black"/>
@@ -626,13 +662,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes6"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno6"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -653,7 +691,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/six_1question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="가족"
@@ -662,7 +700,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/six_2question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="친인척/친구"
@@ -671,7 +709,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/six_3question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="기타"
@@ -692,6 +730,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -700,7 +740,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question7"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:text="7. 최근 14일 이내에 확진자가 다녀간 장소에 방문한 적이 있습니까?"
                 android:textColor="@android:color/black"/>
@@ -715,13 +755,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes7"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno7"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -742,7 +784,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/seven_1question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="방문장소"
@@ -751,7 +793,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/seven_2question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="본인 방문일시"
@@ -760,7 +802,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <EditText
                     android:id="@+id/seven_3question"
-                    android:layout_width="160dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="확진자 방문일시"
@@ -781,6 +823,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -789,7 +833,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question8"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:text="8. 최근 1개월 이내에 확진자 발생 지역내(이태원, 강남, 홍대 등) 유흥업소나 다중이용업소, 종교행사 등 최근 집단감염발생 장소에 방문 한 적이 있습니까?" />
@@ -804,13 +848,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes8"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno8"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -843,6 +889,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -851,7 +899,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question9"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:text="9. 14일 이내 종교행사 관련 집회에 참석하거나, 종교행사 관련자와 만난 적이 있습니까?" />
@@ -866,13 +914,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes9"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno9"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -884,16 +934,27 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             android:layout_width="352dp"
             android:layout_height="wrap_content"
             android:text="*예라고 답한경우" />
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/nine_1question"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="방문한장소/일시,만난 사람/일시"
+            android:hint="방문한장소/일시"
             android:inputType="textPersonName"
             android:textSize="12sp" />
+            <EditText
+                android:id="@+id/nine_2question"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="만난 사람/일시"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -905,6 +966,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -913,7 +976,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question10"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:text="10. 최근 1개원 이내에 해외를 방문한 적이 있습니까?" />
@@ -928,13 +991,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes10"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno10"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -967,6 +1032,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:orientation="vertical">
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -975,7 +1042,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <TextView
                 android:id="@+id/question11"
-                android:layout_width="277dp"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
                 android:text="11. 최근 14일 이내에 해외에서 귀국한 인원(14일 미경과자)를 만난 적이 있습니까?" />
@@ -990,13 +1057,15 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                     android:id="@+id/checkitem_radioButtonyes11"
                     android:layout_width="56dp"
                     android:layout_height="wrap_content"
-                    android:text="예" />
+                    android:text="예"
+                    android:buttonTint="#4486c0"/>
 
                 <RadioButton
                     android:id="@+id/checkitem_radioButtonno11"
                     android:layout_width="83dp"
                     android:layout_height="31dp"
-                    android:text="아니오" />
+                    android:text="아니오"
+                    android:buttonTint="#4486c0"/>
 
 
             </RadioGroup>
@@ -1016,7 +1085,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <EditText
                 android:id="@+id/eleven_1question"
-                android:layout_width="160dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="만난사람"
@@ -1025,7 +1094,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <EditText
                 android:id="@+id/eleven_2question"
-                android:layout_width="160dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="마지막으로 만난 일자"
@@ -1034,7 +1103,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <EditText
                 android:id="@+id/eleven_3question"
-                android:layout_width="160dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="방문국"
