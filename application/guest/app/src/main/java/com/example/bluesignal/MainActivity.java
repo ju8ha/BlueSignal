@@ -1,5 +1,6 @@
 package com.example.bluesignal;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,11 +23,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static android.widget.Toast.*;
 
@@ -41,13 +49,18 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
-  
+
     GuestInfo guestInfo = GuestInfo.getInstance();
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    String host_id;
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String currentDateandTime = sdf.format(new Date());
+
+    SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
+    String currentTime = sdf1.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +124,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 여긴 이제 사용자 일정 리스트 엑티비티 띄워주는 기능을 하면 됨
-                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
-                startActivity(intent);
+                Response.Listener<String> responseListener=new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jasonObject=new JSONObject(response);
+                            boolean success=jasonObject.getBoolean("success");
+
+                            if (success) {//회원등록 성공한 경우
+                                String guest_id = jasonObject.getString("guest_id");
+                                String host_id = jasonObject.getString("host_id");
+                                String time1 = jasonObject.getString("time1");
+                                String date1 = jasonObject.getString("date1");
+
+                                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
+
+                                guestInfo.setVisitInfo(guest_id, host_id, time1, date1);
+
+                                startActivity(intent);
+                            }
+                            else{//회원등록 실패한 경우
+                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                VisitRequest visitRequest=new VisitRequest(guestInfo.getId(), responseListener);
+                RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
+                queue.add(visitRequest);
             }
         });
 
@@ -127,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Handler handler = new Handler();
 
-                CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
+                CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
                     }
@@ -140,13 +182,9 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        try{
-                            scanner.stopScan();
-                        }catch (NullPointerException e){
-                            Toast_no_ble();
-                        }
-
-                        if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
+                        scanner.stopScan();
+                        host_id = scanner.result();
+                        if(IsThereAnyInput(host_id)){  // input이 적절한 값이 들어왔을 경우
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
@@ -155,13 +193,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            Toast_scan_failed();
+                            Toast.makeText(getApplicationContext(),"스캔 실패",Toast.LENGTH_SHORT).show();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
-                },5000);
-
+                },10000);
             }
         });
 
@@ -190,15 +227,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-    }
-
-    private void Toast_no_ble() {
-        Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
-    }
-
-    private void Toast_scan_failed() {
-        Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
     }
 
     private Boolean WriteReport() {
@@ -210,8 +238,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void OpenVisitCard() {
-        Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
-        startActivity(intent);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {//회원등록 성공한 경우
+                        Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
+                        startActivity(intent);
+                    }
+                    else{//회원등록 실패한 경우
+                        Toast.makeText(getApplicationContext(),"기록 실패",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        RecordRequest validateRequest = new RecordRequest(guestInfo.getId(), "host_id", currentTime, currentDateandTime, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        queue.add(validateRequest);
     }
 
     private boolean IsThereAnyReport(String data) {
@@ -223,11 +271,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyInput(String input){
-        if(input==null){
-            return false;
-        }else{
-            return true;
-        }
+    return  true;
     }
 
 }

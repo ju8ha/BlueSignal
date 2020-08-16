@@ -134,6 +134,7 @@ public class MyBluetoothLeScanner {
                 data=new String(sdata, StandardCharsets.UTF_8);
                 if(findHostInServer(data)){
                     myResult = data;
+                    System.out.println(myResult);
                 }
                 return;
             }
@@ -158,6 +159,11 @@ public class MyBluetoothLeScanner {
             super.onPostExecute(result);
             mJsonString = result;
             showResult();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values){
+            super.onProgressUpdate(values);
         }
 
         @Override
