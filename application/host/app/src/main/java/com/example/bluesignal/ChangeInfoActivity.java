@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -52,6 +53,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
         password_text = (EditText) findViewById(R.id.password_text); //비밀번호 맞아야 변경 가능
         name_text = (EditText) findViewById(R.id.name_text);
         phnNumber_text = (EditText) findViewById(R.id.phone_number_text);
+        phnNumber_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         id_text.setText(hostInfo.getId());
         id_text.setEnabled(false);
@@ -81,7 +83,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {//회원등록 성공한 경우
                                     Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(ChangeInfoActivity.this, ChangeInfoActivity.class);
+                                    Intent intent = new Intent(ChangeInfoActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                                 else{//회원등록 실패한 경우

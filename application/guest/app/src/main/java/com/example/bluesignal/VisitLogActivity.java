@@ -156,7 +156,7 @@ public class VisitLogActivity extends AppCompatActivity {
                 HashMap<String,String> hashMap = new HashMap<>();
 
                 if(guestInfo.getId().equals(guest_id)){
-                    hashMap.put(TAG_GUEST_ID, guestInfo.getName());
+                    hashMap.put(TAG_HOST_ID, host_id);
                     hashMap.put(TAG_TIME, time1);
                     hashMap.put(TAG_DATE, date1);
 
@@ -166,7 +166,7 @@ public class VisitLogActivity extends AppCompatActivity {
 
             ListAdapter adapter = new SimpleAdapter(
                     VisitLogActivity.this, mArrayList, R.layout.item_list,
-                    new String[]{TAG_GUEST_ID, TAG_TIME, TAG_DATE},
+                    new String[]{TAG_HOST_ID, TAG_TIME, TAG_DATE},
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
 
