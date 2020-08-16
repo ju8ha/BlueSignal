@@ -53,13 +53,13 @@ public class WithdrawalActivity extends AppCompatActivity {
                                 JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {
-                                    Toast.makeText(getApplicationContext(), "회원탈퇴 완료!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원 탈퇴 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(WithdrawalActivity.this, SignInActivity.class);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 }
                                 else{
-                                    Toast.makeText(getApplicationContext(), "회원탈퇴 실패!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원 탈퇴 실패!", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {

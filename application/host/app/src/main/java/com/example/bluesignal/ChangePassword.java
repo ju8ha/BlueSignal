@@ -60,13 +60,13 @@ public class ChangePassword extends AppCompatActivity {
                                 JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {//성공한 경우
-                                    Toast.makeText(getApplicationContext(), "정보 변경 성공!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "비밀번호 변경 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(ChangePassword.this, SignInActivity.class);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 }
                                 else{//실패한 경우
-                                    Toast.makeText(getApplicationContext(),"정보 변경 실패!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),"비밀번호 변경 실패!",Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {

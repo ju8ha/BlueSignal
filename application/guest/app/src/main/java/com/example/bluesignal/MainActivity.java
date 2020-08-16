@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Handler handler = new Handler();
 
-                CountDownTimer countDownTimer = new CountDownTimer(3000, 1000) {
+                CountDownTimer countDownTimer = new CountDownTimer(2000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
                     }
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
-                },3000);
+                },2000);
             }
         });
 
