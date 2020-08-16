@@ -169,6 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         editText=(TextView)findViewById(R.id.birthday_text);
+        editText.bringToFront();
 
         getDateToday();
 
