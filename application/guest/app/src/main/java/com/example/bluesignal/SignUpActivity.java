@@ -38,7 +38,6 @@ public class SignUpActivity extends AppCompatActivity {
     private Date currentDate;
     private int iYear, iMonth, iDay;
 
-
     private EditText id_text;
     private EditText password_text;
     private EditText name_text;
@@ -170,6 +169,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         editText=(TextView)findViewById(R.id.birthday_text);
+        editText.bringToFront();
 
         getDateToday();
 

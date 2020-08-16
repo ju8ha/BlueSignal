@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/item_name"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="TITLE"
@@ -30,19 +30,20 @@
             android:id="@+id/item_time"
             android:layout_width="130dp"
 
-            android:layout_height="26dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="content"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/black"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/item_state"
             android:layout_width="match_parent"
-            android:layout_height="29dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@android:color/black"
             android:text="TextView" />
 
     </LinearLayout>

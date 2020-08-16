@@ -9,7 +9,7 @@
 <LinearLayout
 android:id="@+id/linearLayout3"
 android:layout_width="0dp"
-android:layout_height="39dp"
+android:layout_height="50dp"
 
 
 app:layout_constraintEnd_toEndOf="parent"
@@ -19,16 +19,27 @@ app:layout_constraintTop_toTopOf="parent">
 <TextView
     android:id="@+id/확인내용"
     android:layout_width="282dp"
-    android:layout_height="39dp"
-
+    android:layout_height="50dp"
+    android:paddingLeft="5dp"
     android:gravity="center_vertical"
-    android:text="확인내용" />
+    android:text="확인내용"
+    android:textColor="#FFFFFF"
+    android:background="#4486c0"
+    android:fontFamily="@font/app_main_font"
+    android:textSize="19sp"
+    android:textStyle="bold"/>
 
 <TextView
     android:id="@+id/응답"
     android:layout_width="match_parent"
-    android:layout_height="39dp"
+    android:layout_height="50dp"
     android:gravity="center_vertical"
+    android:paddingLeft="5dp"
+    android:fontFamily="@font/app_main_font"
+    android:textSize="19sp"
+    android:textStyle="bold"
+    android:textColor="#FFFFFF"
+    android:background="#4486c0"
 
     android:text="응답" />
 </LinearLayout>
@@ -68,6 +79,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question1"
                 android:layout_width="282dp"
                 android:layout_height="39dp"
+                android:textColor="@android:color/black"
                 android:text="1. 최근 14일 이내에 아래의 증상을 경험한 적이 있습니까?"
                 tools:layout_editor_absoluteX="-3dp"
                 tools:layout_editor_absoluteY="232dp" />
@@ -261,7 +273,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
             android:id="@+id/question2"
             android:layout_width="277dp"
             android:layout_height="29dp"
-            android:text="2. 현재에도 위에서 표시한 증상이 있습니까?" />
+            android:text="2. 현재에도 위에서 표시한 증상이 있습니까?"
+            android:textColor="@android:color/black"/>
 
         <RadioGroup
             android:id="@+id/checkitem_radiogroup2"
@@ -302,7 +315,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question3"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
-                android:text="3. 코로나19 확진 판정을 받은 적이 있습니까?" />
+                android:text="3. 코로나19 확진 판정을 받은 적이 있습니까?"
+                android:textColor="@android:color/black"/>
 
             <RadioGroup
                 android:id="@+id/checkitem_radiogroup3"
@@ -401,7 +415,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question4"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
-                android:text="4. 코로나19 관련 PCR 검사를 받은 적이 있습니까?" />
+                android:text="4. 코로나19 관련 PCR 검사를 받은 적이 있습니까?"
+                android:textColor="@android:color/black"/>
 
             <RadioGroup
                 android:id="@+id/checkitem_radiogroup4"
@@ -509,7 +524,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question5"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
-                android:text="5. 최근 14일 이내에 확진자와 접촉한 적이 있습니까?" />
+                android:text="5. 최근 14일 이내에 확진자와 접촉한 적이 있습니까?"
+                android:textColor="@android:color/black"/>
 
             <RadioGroup
                 android:id="@+id/checkitem_radiogroup5"
@@ -597,7 +613,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question6"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
-                android:text="6. 최근 14일 이내에 확진자의 접촉자를 만난 적이 있습니까?" />
+                android:text="6. 최근 14일 이내에 확진자의 접촉자를 만난 적이 있습니까?"
+                android:textColor="@android:color/black"/>
 
             <RadioGroup
                 android:id="@+id/checkitem_radiogroup6"
@@ -685,7 +702,8 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question7"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
-                android:text="7. 최근 14일 이내에 확진자가 다녀간 장소에 방문한 적이 있습니까?" />
+                android:text="7. 최근 14일 이내에 확진자가 다녀간 장소에 방문한 적이 있습니까?"
+                android:textColor="@android:color/black"/>
 
             <RadioGroup
                 android:id="@+id/checkitem_radiogroup7"
@@ -773,6 +791,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question8"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:text="8. 최근 1개월 이내에 확진자 발생 지역내(이태원, 강남, 홍대 등) 유흥업소나 다중이용업소, 종교행사 등 최근 집단감염발생 장소에 방문 한 적이 있습니까?" />
 
             <RadioGroup
@@ -834,6 +853,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question9"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:text="9. 14일 이내 종교행사 관련 집회에 참석하거나, 종교행사 관련자와 만난 적이 있습니까?" />
 
             <RadioGroup
@@ -895,6 +915,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question10"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:text="10. 최근 1개원 이내에 해외를 방문한 적이 있습니까?" />
 
             <RadioGroup
@@ -956,6 +977,7 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
                 android:id="@+id/question11"
                 android:layout_width="277dp"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:text="11. 최근 14일 이내에 해외에서 귀국한 인원(14일 미경과자)를 만난 적이 있습니까?" />
 
             <RadioGroup
@@ -1026,8 +1048,11 @@ app:layout_constraintTop_toBottomOf="@id/linearLayout3">
         android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:fontFamily="@font/app_main_font"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#4486c0"
         android:text="제출하기"></Button>
 
 
