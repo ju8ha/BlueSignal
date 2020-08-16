@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <EditText
         android:id="@+id/phone_number_text"
@@ -83,10 +83,10 @@
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthday_text"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <TextView
         android:id="@+id/sign_up_text"
@@ -106,14 +106,17 @@
         android:layout_width="208dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
+        android:ems="10"
+        android:gravity="center_vertical"
+
         android:onClick="onText3Clicked"
-        android:text="birthday"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.477" />
+        app:layout_constraintVertical_bias="0.54" />
 
     <EditText
         android:id="@+id/name_text"
@@ -124,9 +127,19 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintVertical_bias="0.919" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="214dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        app:layout_constraintStart_toStartOf="@+id/birthday_text"
+        app:layout_constraintTop_toTopOf="@+id/birthday_text" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
