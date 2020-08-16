@@ -248,8 +248,6 @@ public class VisitLogActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void init() {
         RecyclerView recyclerView = findViewById(R.id.visit_recyclerView);
 
