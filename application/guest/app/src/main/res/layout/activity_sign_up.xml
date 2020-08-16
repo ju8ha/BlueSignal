@@ -8,22 +8,27 @@
 
     <Button
         android:id="@+id/sign_up_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="SIGN UP"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4486c0"
+        android:fontFamily="@font/app_main_font"
+        android:text="회원가입"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/back_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.89" />
 
     <Button
         android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BACK"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4486c0"
+        android:fontFamily="@font/app_main_font"
+        android:text="돌아가기"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -31,33 +36,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+
+    <EditText
+        android:id="@+id/id_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:ems="6"
+        android:fontFamily="@font/app_main_font"
+        android:hint="아이디"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908">
+        app:layout_constraintVertical_bias="0.876" />
 
-        <EditText
-            android:id="@+id/id_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="6"
-            android:hint="아이디"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/validateButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="중복확인" />
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/validateButton"
+        android:layout_width="76dp"
+        android:layout_height="45dp"
+        android:background="#4486c0"
+        android:fontFamily="@font/app_main_font"
+        android:text="중복확인"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toEndOf="@+id/id_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227" />
 
     <EditText
         android:id="@+id/password_text"
@@ -67,6 +75,7 @@
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="textPassword"
+        android:fontFamily="@font/app_main_font"
         app:layout_constraintBottom_toTopOf="@+id/name_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -79,11 +88,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:fontFamily="@font/app_main_font"
         android:hint="전화번호"
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthday_text"
         app:layout_constraintVertical_bias="0.125" />
@@ -92,7 +102,9 @@
         android:id="@+id/sign_up_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/app_main_font"
         android:text="회원가입"
+        android:textColor="#4486c0"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,34 +115,33 @@
 
     <TextView
         android:id="@+id/birthday_text"
-        android:layout_width="208dp"
-        android:layout_height="48dp"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
         android:layout_marginTop="28dp"
-        android:ems="10"
-        android:gravity="center_vertical"
-
+        android:fontFamily="@font/app_main_font"
         android:onClick="onText3Clicked"
-        android:textSize="18sp"
+        android:text="생일"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
-
+        app:layout_constraintVertical_bias="0.478" />
+  
     <EditText
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="name"
+        android:fontFamily="@font/app_main_font"
+        android:hint="이름"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/birthday_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.919" />
+        app:layout_constraintVertical_bias="0.944" />
 
     <EditText
         android:id="@+id/editTextDate"

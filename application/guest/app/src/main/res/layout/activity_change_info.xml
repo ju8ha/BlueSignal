@@ -6,4 +6,133 @@
     android:layout_height="match_parent"
     tools:context=".ChangeInfoActivity">
 
+
+    <EditText
+        android:id="@+id/id_text"
+        android:layout_width="206dp"
+        android:layout_height="51dp"
+        android:ems="6"
+        android:hint="아이디"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/password_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_text"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <EditText
+        android:id="@+id/phone_number_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="전화번호"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/modify_detail_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <Button
+        android:id="@+id/modify_detail_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4486c0"
+        android:text="회원정보변경"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/back_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.969" />
+
+    <Button
+        android:id="@+id/change_password_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4486c0"
+        android:onClick="onChangePswdButtonClicked"
+        android:text="비밀번호변경"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.406" />
+
+    <EditText
+        android:id="@+id/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/birthday_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_password_button"
+        app:layout_constraintVertical_bias="0.581" />
+
+    <EditText
+        android:id="@+id/password_text"
+        android:layout_width="208dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/change_password_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+
+    <Button
+        android:id="@+id/birthday_button"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:onClick="onBirthdayButtonClicked"
+        android:text="생일"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.955" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#4486c0"
+        android:onClick="onBackButtonClicked"
+        android:text="돌아가기"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <TextView
+        android:id="@+id/change_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/app_main_font"
+        android:text="회원정보변경"
+        android:textColor="#4486c0"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.093" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
