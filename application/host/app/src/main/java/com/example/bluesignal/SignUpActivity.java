@@ -44,12 +44,12 @@ public class SignUpActivity extends AppCompatActivity {
         //birthday_button = (Button)findViewById(R.id.birthday_button);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
         phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
+        final String hostID=id_text.getText().toString();
         validateButton=findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new View.OnClickListener() {//id중복체크
             @Override
             public void onClick(View view) {
-                String hostID=id_text.getText().toString();
+
                 if(validate)
                 {
                     return;
@@ -104,6 +104,14 @@ public class SignUpActivity extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(hostID.equals("")){
+                    AlertDialog.Builder builder=new AlertDialog.Builder( SignUpActivity.this );
+                    dialog=builder.setMessage("아이디는 빈 칸일 수 없습니다")
+                            .setPositiveButton("확인",null)
+                            .create();
+                    dialog.show();
+                    return;
+                }else{
 
                 //editText에 입력되어있는 값을 get(가져온다)해온다
                 String hostID=id_text.getText().toString();
@@ -134,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity {
                 //서버로 volley를 이용해서 요청을 함
                 SignUpRequest registerRequest=new SignUpRequest(hostID,hostPass, hostName, hostNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
-                queue.add(registerRequest);
+                queue.add(registerRequest);}
             }
         });
 
