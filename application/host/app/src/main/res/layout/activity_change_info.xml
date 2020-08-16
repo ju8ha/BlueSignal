@@ -29,10 +29,10 @@
         android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/modify_detail_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.918" />
 
     <Button
         android:id="@+id/back_button"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.881" />
 
     <Button
         android:id="@+id/modify_detail_button"
@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.938" />
 
     <Button
         android:id="@+id/change_password_button"
@@ -82,14 +82,16 @@
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/phone_number_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_password_button" />
+        app:layout_constraintTop_toBottomOf="@+id/change_password_button"
+        app:layout_constraintVertical_bias="0.161" />
 
     <EditText
         android:id="@+id/password_text"
