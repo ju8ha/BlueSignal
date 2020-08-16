@@ -27,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.json.JSONException;
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String currentDateandTime = sdf.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         scanner.stopScan();
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                            if(IsThereAnyReport()){ // 문진표를 작성했을 경우
+                            if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
                             else{   //문진표를 작성하지 못했을 경우
@@ -180,9 +185,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean IsThereAnyReport() {
-
-        return false;
+    private boolean IsThereAnyReport(String data) {
+        if(guestInfo.getReport().equals(data)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private boolean IsThereAnyInput(String input){
