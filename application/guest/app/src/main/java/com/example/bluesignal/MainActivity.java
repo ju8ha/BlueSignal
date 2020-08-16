@@ -153,9 +153,15 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        scanner.stopScan();
+                        try{
+                            scanner.stopScan();
+                        }catch (NullPointerException e){
+                            Toast_no_ble();
+                        }
+
                         host_id = scanner.result();
                         if(IsThereAnyInput(host_id)){  // input이 적절한 값이 들어왔을 경우
+                            Toast_scan_success(scanner.result());
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            Toast.makeText(getApplicationContext(),"스캔 실패",Toast.LENGTH_SHORT).show();
+                            Toast_scan_failed();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
@@ -199,6 +205,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void Toast_scan_failed() {
+        Toast.makeText(getApplicationContext(),"스캔에 실패했어요.",Toast.LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_success(String result) {
+        Toast.makeText(this,result+"에 입장가능 합니다.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_no_ble(){
+        Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
+    }
+
 
     private Boolean WriteReport() {
         //서버에 정보 보내기!
@@ -242,7 +261,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyInput(String input){
-    return  true;
+        if(input==null)
+            return false;
+        else
+            return true;
     }
 
 }
