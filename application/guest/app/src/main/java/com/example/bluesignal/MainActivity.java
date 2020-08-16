@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            // Toast Message "스캔 실패"
+                            Toast_scan_failed();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
@@ -173,6 +173,10 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
     }
 
+    private void Toast_scan_failed() {
+        Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
+    }
+
     private Boolean WriteReport() {
         //서버에 정보 보내기!
         // 리포트(문진표) 액티비티 띄우기
@@ -195,7 +199,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyInput(String input){
-    return  true;
+        if(input==null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
