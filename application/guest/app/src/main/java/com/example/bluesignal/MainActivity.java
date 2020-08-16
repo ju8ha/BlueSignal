@@ -1,6 +1,5 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -8,7 +7,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,17 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import static android.widget.Toast.*;
 
@@ -124,7 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        scanner.stopScan();
+                        try{
+                            scanner.stopScan();
+                        }catch (NullPointerException e){
+                            Toast_no_ble();
+                        }
+
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
@@ -134,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            // Toast Message "스캔 실패"
+                            Toast_scan_failed();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
@@ -172,6 +169,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void Toast_no_ble() {
+        Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_failed() {
+        Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
+    }
+
     private Boolean WriteReport() {
         //서버에 정보 보내기!
         // 리포트(문진표) 액티비티 띄우기
@@ -194,7 +199,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyInput(String input){
-    return  true;
+        if(input==null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
