@@ -42,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText password_text;
     private EditText name_text;
     private EditText phone_number_text;
+    private EditText editTextDate;
     //private EditText mEditTextState;
     //private EditText mEditTextIssurvey;
     //private TextView mTextViewResult;
@@ -171,27 +172,22 @@ public class SignUpActivity extends AppCompatActivity {
         editText=(TextView)findViewById(R.id.birthday_text);
         editText.bringToFront();
 
-        getDateToday();
+        editTextDate = (EditText)findViewById(R.id.editTextDate);
 
-
-    }
-    protected void getDateToday(){
-        currentDate=new Date();
-        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
-        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
-        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
-
-        editText.setText(sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일");
     }
 
     protected void updateEditText(){
         StringBuffer sb =new StringBuffer();
-        editText.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
+        editTextDate.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
     }
 
 
     public void onText3Clicked(View v){
-        String strDate = editText.getText().toString();
+        currentDate=new Date();
+        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
+        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
+        String strDate = sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일";
         strDate=strDate.replace("년","/").replace("월","/").replace("일","/");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 

@@ -115,19 +115,18 @@
 
     <TextView
         android:id="@+id/birthday_text"
-        android:layout_width="230dp"
-        android:layout_height="45dp"
+        android:layout_width="228dp"
+        android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/app_main_font"
         android:onClick="onText3Clicked"
-        android:text="생일"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-  
+        app:layout_constraintVertical_bias="0.477" />
+
     <EditText
         android:id="@+id/name_text"
         android:layout_width="wrap_content"
@@ -145,12 +144,18 @@
 
     <EditText
         android:id="@+id/editTextDate"
-        android:layout_width="214dp"
+        android:layout_width="227dp"
         android:layout_height="47dp"
         android:ems="10"
         android:focusableInTouchMode="false"
+        android:fontFamily="@font/app_main_font"
+        android:hint="생일"
+        app:layout_constraintBottom_toBottomOf="@+id/birthday_text"
+        app:layout_constraintEnd_toEndOf="@+id/birthday_text"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/birthday_text"
-        app:layout_constraintTop_toTopOf="@+id/birthday_text" />
+        app:layout_constraintTop_toTopOf="@+id/birthday_text"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
