@@ -97,7 +97,6 @@ public class ChangeInfoActivity extends AppCompatActivity {
                     guestInfo.setName(name_text.getText().toString());
                     guestInfo.setBirthday(editTextDate_text.getText().toString());
                     guestInfo.setPhnNumber(phnNumber_text.getText().toString());
-                    Toast.makeText(getApplicationContext(), "modify success", Toast.LENGTH_SHORT).show();
 
                     Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                         @Override
@@ -106,12 +105,13 @@ public class ChangeInfoActivity extends AppCompatActivity {
                                 JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {//회원등록 성공한 경우
-                                    Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원정보 변경 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(ChangeInfoActivity.this, MainActivity.class);
                                     startActivity(intent);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 }
                                 else{//회원등록 실패한 경우
-                                    Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원정보 변경 실패!", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {
@@ -126,9 +126,8 @@ public class ChangeInfoActivity extends AppCompatActivity {
 
 
                 }else{//비밀번호를 잘못 입력하였습니다 ~
-                    Toast.makeText(getApplicationContext(), "password error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });

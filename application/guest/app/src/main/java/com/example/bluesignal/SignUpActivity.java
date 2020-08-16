@@ -126,12 +126,16 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //editText에 입력되어있는 값을 get(가져온다)해온다
-                String userID=id_text.getText().toString();
-                final String userPass=password_text.getText().toString();
-                String userName=name_text.getText().toString();
+                String guestID=id_text.getText().toString();
+                final String guestPSWD=password_text.getText().toString();
+                String guestName=name_text.getText().toString();
+                String guestPhnNumber=phone_number_text.getText().toString();
+                String guestBirthday =editTextDate.getText().toString();
 
-                String userNumber=phone_number_text.getText().toString();
-                String userBirth =editTextDate.getText().toString();
+                if(guestID.equals("")||guestPSWD.equals("")||guestName.equals("")||guestBirthday.equals("")||guestPhnNumber.equals("")){
+                    Toast.makeText(getApplicationContext(), "입력란을 모두 채워주세요!", Toast.LENGTH_SHORT).show();
+                }
+
                 Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                     @Override
                     public void onResponse(String response) {
@@ -139,12 +143,12 @@ public class SignUpActivity extends AppCompatActivity {
                             JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                             boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                             if (success) {//회원등록 성공한 경우
-                                Toast.makeText(getApplicationContext(), "회원 등록 성공", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "회원 등록 성공!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
-                                Toast.makeText(getApplicationContext(),"회원 등록 실패",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"회원 등록 실패!",Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         } catch (JSONException e) {
@@ -153,7 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 };
                 //서버로 volley를 이용해서 요청을 함
-                SignUpRequest registerRequest=new SignUpRequest(userID,userPass, userName, userBirth, userNumber,responseListener);
+                SignUpRequest registerRequest=new SignUpRequest(guestID,guestPSWD, guestName, guestBirthday, guestPhnNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
                 queue.add(registerRequest);
             }

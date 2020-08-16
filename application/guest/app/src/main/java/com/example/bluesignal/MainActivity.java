@@ -238,8 +238,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
                         startActivity(intent);
                     }
-                    else{//회원등록 실패한 경우
-                        Toast.makeText(getApplicationContext(),"기록 실패",Toast.LENGTH_SHORT).show();
+                    else{
                         return;
                     }
                 } catch (JSONException e) {
