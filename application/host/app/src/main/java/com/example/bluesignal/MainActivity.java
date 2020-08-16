@@ -2,10 +2,8 @@ package com.example.bluesignal;
 
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
     Button bluetooth_start_button;
     Button visit_log_button;
-    String myID;
     ImageView drawer_image;
 
     BluetoothManager manager;
@@ -54,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext());
 
-        myID = "test"; //이부분은 추후에 인텐트로 로그인 시 해당정보를 메인엑티비티에 저장하도록 해야함
-
         drawer_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,30 +61,15 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                advertiser.startAdvertise(myID);
-
-
                 if(ButtonClickedState==false){
                     bluetooth_start_button.setSelected(true);
                     bluetooth_start_button.setText("신호 전송 중지");
-                    ButtonClickedState=true;
+                    advertiser.stopAdvertise();
                 }else{
                     bluetooth_start_button.setSelected(false);
                     bluetooth_start_button.setText("신호 전송 시작");
-                    ButtonClickedState=false;
+                    advertiser.startAdvertise(hostInfo.getId());
                 }
-
-
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        advertiser.stopAdvertise();
-                        bluetooth_start_button.setSelected(false);
-                        ButtonClickedState=false;
-                    }
-                },10000);
             }
         });
 
@@ -98,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,VisitLogActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -112,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_setting:
-                        Intent intent2 = new Intent(getApplicationContext(), SettingActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, WithdrawalActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:

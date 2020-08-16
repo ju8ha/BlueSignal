@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -37,11 +38,11 @@ public class SignUpActivity extends AppCompatActivity {
     private Date currentDate;
     private int iYear, iMonth, iDay;
 
-
     private EditText id_text;
     private EditText password_text;
     private EditText name_text;
     private EditText phone_number_text;
+    private EditText editTextDate;
     //private EditText mEditTextState;
     //private EditText mEditTextIssurvey;
     //private TextView mTextViewResult;
@@ -59,6 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
         password_text = (EditText)findViewById(R.id.password_text);
         name_text = (EditText)findViewById(R.id.name_text);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
+        phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         //mEditTextState = (EditText)findViewById(R.id.editText_main_state);
         //mEditTextIssurvey= (EditText)findViewById(R.id.editText_main_issurvey);
@@ -129,7 +131,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String userName=name_text.getText().toString();
 
                 String userNumber=phone_number_text.getText().toString();
-                String userBirth =editText.getText().toString();
+                String userBirth =editTextDate.getText().toString();
                 Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                     @Override
                     public void onResponse(String response) {
@@ -168,28 +170,24 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         editText=(TextView)findViewById(R.id.birthday_text);
+        editText.bringToFront();
 
-        getDateToday();
+        editTextDate = (EditText)findViewById(R.id.editTextDate);
 
-
-    }
-    protected void getDateToday(){
-        currentDate=new Date();
-        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
-        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
-        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
-
-        editText.setText(sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일");
     }
 
     protected void updateEditText(){
         StringBuffer sb =new StringBuffer();
-        editText.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
+        editTextDate.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
     }
 
 
     public void onText3Clicked(View v){
-        String strDate = editText.getText().toString();
+        currentDate=new Date();
+        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
+        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
+        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
+        String strDate = sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일";
         strDate=strDate.replace("년","/").replace("월","/").replace("일","/");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
 

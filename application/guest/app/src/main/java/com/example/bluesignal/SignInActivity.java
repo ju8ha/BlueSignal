@@ -29,7 +29,6 @@ public class SignInActivity extends AppCompatActivity {
 
     GuestInfo guestInfo = GuestInfo.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

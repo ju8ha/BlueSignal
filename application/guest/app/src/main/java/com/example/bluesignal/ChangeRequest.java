@@ -20,9 +20,10 @@ public class ChangeRequest extends StringRequest{
     //서버 url 설정(php파일 연동)
     final static  private String URL="http://seatrea.dothome.co.kr/change.php";
     final static  private String URL2="http://seatrea.dothome.co.kr/change2.php";
+    final static  private String URL3="http://seatrea.dothome.co.kr/change3.php";
     private Map<String,String> map;
 
-    public ChangeRequest(String userName, String userBirth, String userNumber, Response.Listener<String>listener){
+    public ChangeRequest(String userName, String userBirth, String userNumber, Response.Listener<String>listener){//개인정보 변경
         super(Request.Method.POST,URL,listener,null);//위 url에 post방식으로 값을 전송
 
         map=new HashMap<>();
@@ -33,7 +34,7 @@ public class ChangeRequest extends StringRequest{
 
     }
 
-    public ChangeRequest(String password,Response.Listener<String>listener){
+    public ChangeRequest(String password,Response.Listener<String>listener){ //비밀번호 제거위함
         super(Request.Method.POST,URL2,listener,null);//위 url에 post방식으로 값을 전송
         map=new HashMap<>();
         map.put("userPassword",password);

@@ -56,11 +56,16 @@ public class MyBluetoothLeScanner {
     private TextView mTextViewResult;
     ArrayList<HashMap<String, String>> mArrayList;
     String mJsonString;
+    static String[] price;
 
     public MyBluetoothLeScanner(BluetoothManager manager, Context applicationContext, FragmentActivity activity){
         this.adapter = manager.getAdapter();
         this.context = applicationContext;
         this.fragmentActivity = activity;
+
+        mArrayList = new ArrayList<>(); // host 정보 저장
+        GetData task = new GetData();
+        task.execute("http://seatrea.dothome.co.kr/host_info.php");
     }
 
     public void startScan(){
@@ -118,7 +123,7 @@ public class MyBluetoothLeScanner {
 
         private void addScanResult(ScanResult result) {
             BluetoothDevice device = result.getDevice();
-            String data="NONE";
+            String data= "NONE";
 
             //*****************************************************************************************************************
             byte[] sdata;
@@ -137,13 +142,8 @@ public class MyBluetoothLeScanner {
 // host_id 리스트 배열 저장
     private boolean findHostInServer(String hostName){
 
-        mArrayList = new ArrayList<>(); // host 정보 저장
-
-        GetData task = new GetData();
-        task.execute("http://seatrea.dothome.co.kr/host_info.php");
-
-        for(int i = 0; i<mArrayList.size(); i++){
-            if(mArrayList.get(i).equals(hostName)){
+        for(int i = 0; i < price.length; i++){
+            if(price[i].equals(hostName)){
                 return true;
             }
         }
@@ -151,24 +151,11 @@ public class MyBluetoothLeScanner {
     }
 
     private class GetData extends AsyncTask<String, Void, String> {
-        //ProgressDialog progressDialog;
         String errorString = null;
-
-       /* @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(MyBluetoothLeScanner.this,
-                    "Please Wait", null, true, true);
-        }*/
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
-            //progressDialog.dismiss();
-            //mTextViewResult.setText(result);
-            //Log.d(TAG, "response  - " + result);
             mJsonString = result;
             showResult();
         }
@@ -207,7 +194,6 @@ public class MyBluetoothLeScanner {
                 }
 
                 bufferedReader.close();
-
                 return sb.toString().trim();
 
             } catch (Exception e) {
@@ -226,32 +212,22 @@ public class MyBluetoothLeScanner {
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
-            for(int i=0;i<jsonArray.length();i++){
-
+            for (int i = 0; i < jsonArray.length(); i++){
                 JSONObject item = jsonArray.getJSONObject(i);
-
                 String id = item.getString(TAG_ID);
-                //String name = item.getString(TAG_NAME);
-                //String address = item.getString(TAG_ADDRESS);
-
                 HashMap<String,String> hashMap = new HashMap<>();
-
                 hashMap.put(TAG_ID, id);
-                //hashMap.put(TAG_NAME, name);
-                //hashMap.put(TAG_ADDRESS, address);
-
                 mArrayList.add(hashMap);
             }
 
-            /*ListAdapter adapter = new SimpleAdapter(
-                    MainActivity.this, mArrayList, R.layout.item_list,
-                    new String[]{TAG_ID},
-                    new int[]{R.id.textView_list_id}
-            );*/
-
+            price = new String[mArrayList.size()];
+            int j=0;
+            for (Map<String, String> item : mArrayList) {
+                price[j] = item.get(TAG_ID);
+                j++;
+            }
 
         } catch (JSONException e) {
-
             Log.d(TAG, "showResult : ", e);
         }
 

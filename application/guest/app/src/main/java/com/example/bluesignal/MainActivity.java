@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -15,13 +18,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.Response;
 import com.google.android.material.navigation.NavigationView;
 
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.widget.Toast.*;
 
@@ -39,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
   
     GuestInfo guestInfo = GuestInfo.getInstance();
+    Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String currentDateandTime = sdf.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,32 +96,47 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 scanner.startScan();
 
                 bluetooth_start_button.setEnabled(false);
+                bluetooth_start_button.setBackgroundColor(Color.parseColor("#58ACFA"));
 
                 Handler handler = new Handler();
+
+                CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
+                    }
+
+                    public void onFinish() {
+                        bluetooth_start_button.setText("입장권 발급");
+                    }
+                }.start();
+
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        scanner.stopScan();
-//                        printText.setText(scanner.result());
-                        System.out.println(scanner.result());
+                        try{
+                            scanner.stopScan();
+                        }catch (NullPointerException e){
+                            Toast_no_ble();
+                        }
+
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
-                          //  if(IsThereAnyReport()){ // 문진표를 작성했을 경우
-                            //    OpenVisitCard();
-                           // }
-                           // else{   //문진표를 작성하지 못했을 경우
+                            if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
+                                OpenVisitCard();
+                            }
+                            else{   //문진표를 작성하지 못했을 경우
                                 WriteReport();
-                          //  }
+                            }
                         }
                         else{
-                            // Toast Message "스캔 실패"
+                            Toast_scan_failed();
                         }
                         bluetooth_start_button.setEnabled(true);
+                        bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
-                },10000);
+                },5000);
 
             }
         });
@@ -129,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent1,1);
                         break;
                     case R.id.nav_withdrawal:   // 계정 탈퇴
-                        guestInfo.deleteAllInfo();
-
-                        Intent intent2 = new Intent(getApplicationContext(), SignInActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, WithdrawalActivity.class);
                         startActivityForResult(intent2,1);
                         break;
                     case R.id.nav_sign_out:
@@ -149,9 +169,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void Toast_no_ble() {
+        Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_failed() {
+        Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
+    }
+
     private Boolean WriteReport() {
-
-
+        //서버에 정보 보내기!
         // 리포트(문진표) 액티비티 띄우기
         Intent intent = new Intent(MainActivity.this, ReportActivity.class);
         startActivityForResult(intent,0);
@@ -163,13 +190,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean IsThereAnyReport() {
-
-        return false;
+    private boolean IsThereAnyReport(String data) {
+        if(guestInfo.getReport().equals(data)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     private boolean IsThereAnyInput(String input){
-    return  true;
+        if(input==null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
