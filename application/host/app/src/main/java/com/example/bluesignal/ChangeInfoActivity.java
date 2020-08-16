@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+
 public class ChangeInfoActivity extends AppCompatActivity {
 
     HostInfo hostInfo = HostInfo.getInstance();
@@ -112,6 +113,9 @@ public class ChangeInfoActivity extends AppCompatActivity {
 
     public void onChangePswdButtonClicked(View v){
         startActivity(new Intent(ChangeInfoActivity.this, ChangePassword.class));
+    }
+    public void onclearButtonClicked(View v){
+        startActivity(new Intent(ChangeInfoActivity.this,  MainActivity.class));
     }
 
     public void onBackButtonClicked(View v){ //드로어로 가야함 수정해줄 것

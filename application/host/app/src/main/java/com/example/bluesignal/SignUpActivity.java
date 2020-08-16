@@ -44,12 +44,12 @@ public class SignUpActivity extends AppCompatActivity {
         //birthday_button = (Button)findViewById(R.id.birthday_button);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
         phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
+        final String hostID=id_text.getText().toString();
         validateButton=findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new View.OnClickListener() {//id중복체크
             @Override
             public void onClick(View view) {
-                String hostID=id_text.getText().toString();
+
                 if(validate)
                 {
                     return;
@@ -104,12 +104,16 @@ public class SignUpActivity extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //editText에 입력되어있는 값을 get(가져온다)해온다
                 String hostID=id_text.getText().toString();
-                final String hostPass=password_text.getText().toString();
+                final String hostPSWD=password_text.getText().toString();
                 String hostName=name_text.getText().toString();
-                String hostNumber=phone_number_text.getText().toString();
+                String hostPhnNumber=phone_number_text.getText().toString();
+
+                if(hostID.equals("")||hostPSWD.equals("")||hostName.equals("")||hostPhnNumber.equals("")){
+                    Toast.makeText(getApplicationContext(), "입력란을 모두 채워주세요!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                     @Override
@@ -132,10 +136,9 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 };
                 //서버로 volley를 이용해서 요청을 함
-                SignUpRequest registerRequest=new SignUpRequest(hostID,hostPass, hostName, hostNumber,responseListener);
+                SignUpRequest registerRequest=new SignUpRequest(hostID,hostPSWD, hostName, hostPhnNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
-                queue.add(registerRequest);
-            }
+                queue.add(registerRequest);}
         });
 
         back_button = (Button)findViewById(R.id.back_button);
