@@ -12,7 +12,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ChangePassword"></activity>
         <activity android:name=".WithdrawalActivity" />
-        <activity android:name=".SettingActivity" />
         <activity android:name=".ChangeInfoActivity" />
         <activity android:name=".VisitLogActivity" />
         <activity android:name=".IntroActivity">
