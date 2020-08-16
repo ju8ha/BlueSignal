@@ -52,12 +52,13 @@ public class WithdrawalActivity extends AppCompatActivity {
                                 JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
                                 boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
                                 if (success) {
-                                    Toast.makeText(getApplicationContext(), "delete success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원 탈퇴 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(WithdrawalActivity.this, SignInActivity.class);
                                     startActivity(intent);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 }
                                 else{
-                                    Toast.makeText(getApplicationContext(), "delete fail", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "회원 탈퇴 실패!", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {
@@ -76,18 +77,11 @@ public class WithdrawalActivity extends AppCompatActivity {
 
 
                 }else{//비밀번호를 잘못 입력하였습니다 ~
-                    Toast.makeText(getApplicationContext(), "password error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });
-
-
-
-
-
-
 
     }
 

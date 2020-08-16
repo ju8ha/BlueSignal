@@ -15,6 +15,11 @@ public class GuestInfo{
     private String status;
     private String report;
 
+    private String guest_id;
+    private String host_id;
+    private String time;
+    private String date;
+
     private GuestInfo(){}
 
     public String getId() {
@@ -82,6 +87,13 @@ public class GuestInfo{
         this.report = report;
     }
 
+
+    public void setVisitInfo(String guest_id, String host_id, String time, String date){
+        this.guest_id = guest_id;
+        this.host_id = host_id;
+        this.time = time;
+        this.date = date;
+    }
 
     public boolean isInfected(){
         if(this.status.equals("infected")){

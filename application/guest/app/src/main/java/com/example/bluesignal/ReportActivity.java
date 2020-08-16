@@ -101,8 +101,7 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
                         guestInfo.setReport(currentDateandTime);
                         startActivity(intent);
                     }
-                    else{//회원등록 실패한 경우
-                        Toast.makeText(getApplicationContext(),"회원 등록 실패",Toast.LENGTH_SHORT).show();
+                    else{
                         return;
                     }
                 } catch (JSONException e) {
@@ -117,7 +116,7 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
 
         }
         else if(Arrays.asList(check).contains(blank)){
-            Toast.makeText(getApplicationContext(),"미기입", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"공란이 존재합니다.", Toast.LENGTH_LONG).show();
         }
         else if(!Arrays.equals(check,equal)){
            /* for(String s:reason){

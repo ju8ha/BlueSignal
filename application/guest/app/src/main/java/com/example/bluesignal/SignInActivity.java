@@ -61,7 +61,7 @@ public class SignInActivity extends AppCompatActivity {
                                 String userState = jasonObject.getString("userState");
                                 String report = jasonObject.getString("is_survey");
 
-                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "로그인 성공!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignInActivity.this, MainActivity.class);
 
                                 //intent.putExtra("log", "User");
@@ -71,7 +71,7 @@ public class SignInActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else{//회원등록 실패한 경우
-                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "로그인 실패!", Toast.LENGTH_SHORT).show();
                                 return;
 
                             }
