@@ -44,7 +44,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_detail);
+        setContentView(R.layout.activity_change_info);
 
         id_text = (EditText) findViewById(R.id.id_text); //변경불가
         password_text = (EditText) findViewById(R.id.password_text); //비밀번호 맞아야 변경 가능
