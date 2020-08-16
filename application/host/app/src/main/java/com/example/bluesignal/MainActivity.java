@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Button visit_log_button;
     ImageView drawer_image;
     TextView main_id_text;
+    TextView main_name_text;
+    TextView main_phnNumber_text;
 
     BluetoothManager manager;
     MyBluetoothLeAdvertiser advertiser;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_change_info,R.id.nav_setting,R.id.nav_sign_out)
+                R.id.nav_change_info,R.id.nav_withdrawal,R.id.nav_sign_out)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -53,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
-        main_id_text = (TextView)findViewById(R.id.main_id_text);
+        main_name_text = (TextView)findViewById(R.id.main_name_text);
+        main_phnNumber_text = (TextView)findViewById(R.id.main_phnNumber_text);
+
+        main_name_text.setText(hostInfo.getName());
+        main_phnNumber_text.setText(hostInfo.getPhnNumber());
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext());
@@ -69,21 +75,25 @@ public class MainActivity extends AppCompatActivity {
         drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                main_id_text = (TextView)findViewById(R.id.main_id_text);
                 main_id_text.setText(hostInfo.getId());
             }
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
+                main_id_text = (TextView)findViewById(R.id.main_id_text);
                 main_id_text.setText(hostInfo.getId());
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
+                main_id_text = (TextView)findViewById(R.id.main_id_text);
                 main_id_text.setText(hostInfo.getId());
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
+                main_id_text = (TextView)findViewById(R.id.main_id_text);
                 main_id_text.setText(hostInfo.getId());
             }
         });
@@ -124,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent1 = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                         startActivityForResult(intent1,1);
                         break;
-                    case R.id.nav_setting:
+                    case R.id.nav_withdrawal:
                         Intent intent2 = new Intent(MainActivity.this, WithdrawalActivity.class);
                         startActivityForResult(intent2,1);
                         break;

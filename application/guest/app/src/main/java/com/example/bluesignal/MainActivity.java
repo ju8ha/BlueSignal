@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button = (Button)findViewById(R.id.bluetooth_start_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
-        guest_id_text = (TextView)findViewById(R.id.guest_id_text);
         main_name_text = (TextView)findViewById(R.id.main_name_text);
         main_phnNumber_text = (TextView)findViewById(R.id.main_phnNumber_text);
 
@@ -85,21 +84,25 @@ public class MainActivity extends AppCompatActivity {
         drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
                 guest_id_text.setText(guestInfo.getId());
             }
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
                 guest_id_text.setText(guestInfo.getId());
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
                 guest_id_text.setText(guestInfo.getId());
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
                 guest_id_text.setText(guestInfo.getId());
             }
         });
