@@ -1,6 +1,5 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -8,7 +7,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import android.app.Activity;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,17 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import static android.widget.Toast.*;
 
@@ -146,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Handler handler = new Handler();
 
-                CountDownTimer countDownTimer = new CountDownTimer(10000, 1000) {
+                CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         bluetooth_start_button.setText(String.format(Locale.getDefault(), "%d 초", millisUntilFinished / 1000L));
                     }
@@ -161,7 +153,13 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         scanner.stopScan();
                         host_id = scanner.result();
-                        if(IsThereAnyInput(host_id)){  // input이 적절한 값이 들어왔을 경우
+                        try{
+                            scanner.stopScan();
+                        }catch (NullPointerException e){
+                            Toast_no_ble();
+                        }
+                        if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
+                            Toast_scan_success(scanner.result());
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
@@ -170,12 +168,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            Toast.makeText(getApplicationContext(),"스캔 실패",Toast.LENGTH_SHORT).show();
+                            Toast_scan_failed();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
-                },10000);
+                },5000);
             }
         });
 
@@ -204,6 +202,18 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void Toast_no_ble() {
+        Toast.makeText(this,"블루투스 신호를 받지 못했어요.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_failed() {
+        Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_success(String data) {
+        Toast.makeText(this,data+"에 입장가능합니다.", LENGTH_SHORT).show();
     }
 
     private Boolean WriteReport() {
@@ -248,7 +258,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean IsThereAnyInput(String input){
-    return  true;
+        if(input==null){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }

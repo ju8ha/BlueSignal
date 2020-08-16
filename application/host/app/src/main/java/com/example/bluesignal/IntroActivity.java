@@ -1,10 +1,10 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
     //시작 화면 액티비티
@@ -27,7 +27,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        handler.postDelayed(r,4000);
+        handler.postDelayed(r,2000);
     }
 
     @Override
