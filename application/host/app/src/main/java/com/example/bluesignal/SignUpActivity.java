@@ -1,18 +1,14 @@
 package com.example.bluesignal;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,20 +17,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 public class SignUpActivity extends AppCompatActivity {
     //회원 가입 activity
     Button sign_up_button;
     Button validateButton;
     Button back_button;
-
-    private TextView editText;
-    private Date currentDate;
-    private int iYear, iMonth, iDay;
 
     private EditText id_text;
     private EditText password_text;
@@ -159,59 +146,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        editText=(TextView)findViewById(R.id.birthday_text);
-
-        getDateToday();
-
-
-
     }
-    protected void getDateToday(){
-        currentDate=new Date();
-        SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
-        SimpleDateFormat sdfMon = new SimpleDateFormat("MM");
-        SimpleDateFormat sdfDay = new SimpleDateFormat("dd");
-
-        editText.setText(sdfYear.format(currentDate)+"년"+sdfMon.format(currentDate)+"월"+sdfDay.format(currentDate)+"일");
-    }
-
-    protected void updateEditText(){
-        StringBuffer sb =new StringBuffer();
-        editText.setText(sb.append(iYear+"년").append(iMonth+"월").append(iDay+"일"));
-    }
-
-
-    public void onText3Clicked(View v){
-        String strDate = editText.getText().toString();
-        strDate=strDate.replace("년","/").replace("월","/").replace("일","/");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
-
-        try{
-            Date pickDate = new Date(strDate);
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(pickDate);
-            int yy=cal.get(Calendar.YEAR);
-            int mm=cal.get(Calendar.MONTH);
-            int dd=cal.get(Calendar.DAY_OF_MONTH);
-            DatePickerDialog dialog = new DatePickerDialog(this, android.R.style.Theme_Holo_Dialog, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                    iYear = year;
-                    iMonth = month+1;
-                    iDay = day;
-                    updateEditText();
-                }
-            }, yy, mm, dd);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-            dialog.show();
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-
-
 
 }

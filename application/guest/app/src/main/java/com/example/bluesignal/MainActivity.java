@@ -1,6 +1,7 @@
 package com.example.bluesignal;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -50,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     MyBluetoothLeScanner scanner;
 
     GuestInfo guestInfo = GuestInfo.getInstance();
-    Activity thisA = this;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -91,6 +91,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(Gravity.RIGHT);
+            }
+        });
+
+        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
+                guest_id_text.setText(guestInfo.getId());
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
+                guest_id_text.setText(guestInfo.getId());
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                guest_id_text = (TextView)findViewById(R.id.guest_id_text);
+                guest_id_text.setText(guestInfo.getId());
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
                 guest_id_text = (TextView)findViewById(R.id.guest_id_text);
                 guest_id_text.setText(guestInfo.getId());
             }
