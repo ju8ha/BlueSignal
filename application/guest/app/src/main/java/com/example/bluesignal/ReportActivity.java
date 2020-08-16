@@ -85,6 +85,7 @@ public class ReportActivity extends AppCompatActivity implements RadioGroup.OnCh
         radioGroup11.setOnCheckedChangeListener(this);
 
     }
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String currentDateandTime = sdf.format(new Date());
     public void onClick(View view){
