@@ -27,7 +27,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        handler.postDelayed(r,2000);
+        handler.postDelayed(r,1200);
     }
 
     @Override
