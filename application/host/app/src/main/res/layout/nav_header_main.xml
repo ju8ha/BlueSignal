@@ -28,7 +28,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/host_id_text"
+        android:id="@+id/main_id_text"
         android:layout_width="367dp"
         android:layout_height="85dp"
         android:layout_weight="1"

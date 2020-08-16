@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     Button bluetooth_start_button;
     Button visit_log_button;
     ImageView drawer_image;
+    TextView main_id_text;
 
     BluetoothManager manager;
     MyBluetoothLeAdvertiser advertiser;
+
+
 
     HostInfo hostInfo = HostInfo.getInstance();
 
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         visit_log_button = (Button)findViewById(R.id.visit_log_button);
         drawer_image = (ImageView)findViewById(R.id.drawerImage);
 
+        main_id_text = (TextView)findViewById(R.id.main_id_text);
+
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext());
 
@@ -55,6 +62,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawer.openDrawer(Gravity.RIGHT);
+
+            }
+        });
+
+        drawer.setDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+                main_id_text.setText(hostInfo.getId());
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+                main_id_text.setText(hostInfo.getId());
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+                main_id_text.setText(hostInfo.getId());
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                main_id_text.setText(hostInfo.getId());
             }
         });
 
