@@ -131,7 +131,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String userName=name_text.getText().toString();
 
                 String userNumber=phone_number_text.getText().toString();
-                String userBirth =editText.getText().toString();
+                String userBirth =editTextDate.getText().toString();
                 Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                     @Override
                     public void onResponse(String response) {
