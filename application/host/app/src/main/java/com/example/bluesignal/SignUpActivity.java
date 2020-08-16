@@ -2,6 +2,7 @@ package com.example.bluesignal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         name_text = (EditText)findViewById(R.id.name_text);
         //birthday_button = (Button)findViewById(R.id.birthday_button);
         phone_number_text = (EditText)findViewById(R.id.phone_number_text);
+        phone_number_text.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         validateButton=findViewById(R.id.validateButton);
         validateButton.setOnClickListener(new View.OnClickListener() {//id중복체크
