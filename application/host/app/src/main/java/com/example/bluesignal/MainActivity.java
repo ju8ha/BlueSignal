@@ -61,15 +61,19 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(ButtonClickedState==false){
                     bluetooth_start_button.setSelected(true);
                     bluetooth_start_button.setText("신호 전송 중지");
-                    advertiser.stopAdvertise();
+                    advertiser.startAdvertise(hostInfo.getId());
+                    ButtonClickedState = true;
                 }else{
                     bluetooth_start_button.setSelected(false);
                     bluetooth_start_button.setText("신호 전송 시작");
-                    advertiser.startAdvertise(hostInfo.getId());
+                    advertiser.stopAdvertise();
+                    ButtonClickedState = false;
                 }
+
             }
         });
 
