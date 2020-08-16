@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         main_phnNumber_text.setText(hostInfo.getPhnNumber());
 
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
-        advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext());
+        advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext(),this);
 
         drawer_image.setOnClickListener(new View.OnClickListener() {
             @Override
