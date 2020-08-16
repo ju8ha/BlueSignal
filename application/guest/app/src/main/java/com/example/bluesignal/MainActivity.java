@@ -124,40 +124,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 여긴 이제 사용자 일정 리스트 엑티비티 띄워주는 기능을 하면 됨
-                Response.Listener<String> responseListener=new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jasonObject=new JSONObject(response);
-                            boolean success=jasonObject.getBoolean("success");
 
-                            if (success) {//회원등록 성공한 경우
-                                String guest_id = jasonObject.getString("guest_id");
-                                String host_id = jasonObject.getString("host_id");
-                                String time1 = jasonObject.getString("time1");
-                                String date1 = jasonObject.getString("date1");
-
-                                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
-
-                                guestInfo.setVisitInfo(guest_id, host_id, time1, date1);
-
-                                startActivity(intent);
-                            }
-                            else{//회원등록 실패한 경우
-                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                VisitRequest visitRequest=new VisitRequest(guestInfo.getId(), responseListener);
-                RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
-                queue.add(visitRequest);
+                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
+                startActivity(intent);
             }
         });
-
 
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
