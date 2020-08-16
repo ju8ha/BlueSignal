@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WithdrawalActivity"></activity>
+        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".WithdrawalActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".ChangeInfoActivity" />
         <activity android:name=".VisitLogActivity" />
@@ -25,12 +26,12 @@
         <activity android:name=".SignInActivity" />
         <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
 </manifest>
