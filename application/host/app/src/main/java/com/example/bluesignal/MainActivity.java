@@ -2,35 +2,25 @@ package com.example.bluesignal;
 
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
     //홈 화면 엑티비티
     Button bluetooth_start_button;
     Button visit_log_button;
-    String myID;
     ImageView drawer_image;
 
     BluetoothManager manager;
@@ -61,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         manager = (BluetoothManager)this.getApplicationContext().getSystemService(Context.BLUETOOTH_SERVICE);
         advertiser = new MyBluetoothLeAdvertiser(this.getApplicationContext());
 
-        myID = "test"; //이부분은 추후에 인텐트로 로그인 시 해당정보를 메인엑티비티에 저장하도록 해야함
-
         drawer_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,30 +61,15 @@ public class MainActivity extends AppCompatActivity {
         bluetooth_start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                advertiser.startAdvertise(myID);
-
-
                 if(ButtonClickedState==false){
                     bluetooth_start_button.setSelected(true);
                     bluetooth_start_button.setText("신호 전송 중지");
-                    ButtonClickedState=true;
+                    advertiser.stopAdvertise();
                 }else{
                     bluetooth_start_button.setSelected(false);
                     bluetooth_start_button.setText("신호 전송 시작");
-                    ButtonClickedState=false;
+                    advertiser.startAdvertise(hostInfo.getId());
                 }
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        advertiser.stopAdvertise();
-                        bluetooth_start_button.setSelected(false);
-                        ButtonClickedState=false;
-                        bluetooth_start_button.setText("신호 전송 시작");
-
-                    }
-                },10000);
             }
         });
 

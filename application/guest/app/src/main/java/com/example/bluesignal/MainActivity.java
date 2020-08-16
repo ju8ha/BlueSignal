@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothManager manager;
     MyBluetoothLeScanner scanner;
-  
+
     GuestInfo guestInfo = GuestInfo.getInstance();
     Activity thisA = this;
 
