@@ -54,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    String host_id;
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     String currentDateandTime = sdf.format(new Date());
+
+    SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
+    String currentTime = sdf1.format(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +100,38 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 여긴 이제 사용자 일정 리스트 엑티비티 띄워주는 기능을 하면 됨
-                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
-                startActivity(intent);
+                Response.Listener<String> responseListener=new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jasonObject=new JSONObject(response);
+                            boolean success=jasonObject.getBoolean("success");
+
+                            if (success) {//회원등록 성공한 경우
+                                String guest_id = jasonObject.getString("guest_id");
+                                String host_id = jasonObject.getString("host_id");
+                                String time1 = jasonObject.getString("time1");
+                                String date1 = jasonObject.getString("date1");
+
+                                Intent intent = new Intent(MainActivity.this, VisitLogActivity.class);
+
+                                guestInfo.setVisitInfo(guest_id, host_id, time1, date1);
+
+                                startActivity(intent);
+                            }
+                            else{//회원등록 실패한 경우
+                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                                return;
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                VisitRequest visitRequest=new VisitRequest(guestInfo.getId(), responseListener);
+                RequestQueue queue= Volley.newRequestQueue(MainActivity.this);
+                queue.add(visitRequest);
             }
         });
 
@@ -125,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         scanner.stopScan();
-                        if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
+                        host_id = scanner.result();
+                        if(IsThereAnyInput(host_id)){  // input이 적절한 값이 들어왔을 경우
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
@@ -134,13 +170,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            // Toast Message "스캔 실패"
+                            Toast.makeText(getApplicationContext(),"스캔 실패",Toast.LENGTH_SHORT).show();
                         }
                         bluetooth_start_button.setEnabled(true);
                         bluetooth_start_button.setBackgroundColor(Color.parseColor("#4486c0"));
                     }
                 },10000);
-
             }
         });
 
@@ -169,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
     private Boolean WriteReport() {
@@ -181,8 +215,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void OpenVisitCard() {
-        Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
-        startActivity(intent);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {//회원등록 성공한 경우
+                        Intent intent = new Intent(MainActivity.this, VisitCardActivity.class);
+                        startActivity(intent);
+                    }
+                    else{//회원등록 실패한 경우
+                        Toast.makeText(getApplicationContext(),"기록 실패",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        RecordRequest validateRequest = new RecordRequest(guestInfo.getId(), "host_id", currentTime, currentDateandTime, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        queue.add(validateRequest);
     }
 
     private boolean IsThereAnyReport(String data) {

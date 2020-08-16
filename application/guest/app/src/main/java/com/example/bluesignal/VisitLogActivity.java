@@ -29,7 +29,6 @@ public class VisitLogActivity extends AppCompatActivity {
     private Date currentDate;//현재날짜를 나타냄
     private int iYear, iMonth, iDay;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,7 +41,6 @@ public class VisitLogActivity extends AppCompatActivity {
         editText=(TextView)findViewById(R.id.visit_date);
 
         getDateToday();
-
 
     }
     protected void getDateToday(){
@@ -128,9 +126,5 @@ public class VisitLogActivity extends AppCompatActivity {
         // adapter의 값이 변경되었다는 것을 알려줍니다.
         adapter.notifyDataSetChanged();
     }
-
-
-
-
 
 }
