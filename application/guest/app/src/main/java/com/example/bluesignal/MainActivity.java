@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
                         }catch (NullPointerException e){
                             Toast_no_ble();
                         }
-
                         if(IsThereAnyInput(scanner.result())){  // input이 적절한 값이 들어왔을 경우
+                            Toast_scan_success(scanner.result());
                             if(IsThereAnyReport(currentDateandTime)){ // 문진표를 작성했을 경우
                                 OpenVisitCard();
                             }
@@ -175,6 +175,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void Toast_scan_failed() {
         Toast.makeText(this,"스캔을 실패했어요.", LENGTH_SHORT).show();
+    }
+
+    private void Toast_scan_success(String data) {
+        Toast.makeText(this,data+"에 입장가능합니다.", LENGTH_SHORT).show();
     }
 
     private Boolean WriteReport() {
