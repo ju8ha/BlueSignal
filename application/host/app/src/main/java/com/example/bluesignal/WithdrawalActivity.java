@@ -40,18 +40,18 @@ public class WithdrawalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String current_password;//현재 비밀번호에 입력한 값
+                String current_password;
 
                 current_password = withdrawal__password_text.getText().toString();
 
-                if (current_password.equals(hostInfo.getPswd())){ //비밀번호가 맞을 경우
+                if (current_password.equals(hostInfo.getPswd())){
 
                     Response.Listener<String> responseListener=new Response.Listener<String>() {//volley
                         @Override
                         public void onResponse(String response) {
                             try {
-                                JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
-                                boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                                JSONObject jasonObject=new JSONObject(response);
+                                boolean success=jasonObject.getBoolean("success");
                                 if (success) {
                                     Toast.makeText(getApplicationContext(), "회원 탈퇴 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(WithdrawalActivity.this, SignInActivity.class);
@@ -67,7 +67,7 @@ public class WithdrawalActivity extends AppCompatActivity {
                             }
                         }
                     };
-                    //서버로 volley를 이용해서 요청을 함
+
                     DeleteRequest deleteRequest=new DeleteRequest(hostInfo.getId(),responseListener);
                     RequestQueue queue= Volley.newRequestQueue(WithdrawalActivity.this);
                     queue.add(deleteRequest);
@@ -77,7 +77,7 @@ public class WithdrawalActivity extends AppCompatActivity {
                     startActivityForResult(intent2,1);
 
 
-                }else{//비밀번호를 잘못 입력하였습니다 ~
+                }else{
                     Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
 

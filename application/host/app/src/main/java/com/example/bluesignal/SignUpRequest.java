@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class SignUpRequest extends StringRequest {
 
-    //서버 url 설정(php파일 연동)
     final static  private String URL="http://seatrea.dothome.co.kr/Register.php";
     private Map<String,String> map;
 

@@ -21,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
-    //홈 화면 엑티비티
+
     Button bluetooth_start_button;
     Button visit_log_button;
     ImageView drawer_image;
