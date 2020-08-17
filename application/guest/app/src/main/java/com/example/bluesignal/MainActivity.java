@@ -221,9 +221,29 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean WriteReport() {
         //서버에 정보 보내기!
-        // 리포트(문진표) 액티비티 띄우기
-        Intent intent = new Intent(MainActivity.this, ReportActivity.class);
-        startActivityForResult(intent,0);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        // 리포트(문진표) 액티비티 띄우기
+                        Intent intent = new Intent(MainActivity.this, ReportActivity.class);
+                        startActivityForResult(intent,0);
+                    }
+                    else{//회원등록 실패한 경우
+                        Toast.makeText(getApplicationContext(),"기록 실패",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        RecordRequest validateRequest = new RecordRequest(guestInfo.getId(), host_id, currentTime, currentDateandTime, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+        queue.add(validateRequest);
         return true;
     }
 
@@ -247,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        RecordRequest validateRequest = new RecordRequest(guestInfo.getId(), "host_id", currentTime, currentDateandTime, responseListener);
+        RecordRequest validateRequest = new RecordRequest(guestInfo.getId(), host_id, currentTime, currentDateandTime, responseListener);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(validateRequest);
     }
