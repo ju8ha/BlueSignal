@@ -122,7 +122,6 @@ public class MyBluetoothLeScanner {
         }
 
         private void addScanResult(ScanResult result) {
-            BluetoothDevice device = result.getDevice();
             String data= "NONE";
 
             //*****************************************************************************************************************
@@ -134,9 +133,8 @@ public class MyBluetoothLeScanner {
                 data=new String(sdata, StandardCharsets.UTF_8);
                 if(findHostInServer(data)){
                     myResult = data;
-                    System.out.println(myResult);
+                    return;
                 }
-                return;
             }
         }
     }
