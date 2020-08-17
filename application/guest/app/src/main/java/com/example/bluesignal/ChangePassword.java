@@ -89,10 +89,6 @@ public class ChangePassword extends AppCompatActivity {
 
     }
 
-    //현재 비밀번호 입력
-    //바꿀 비밀번호 입력
-    //변경 버튼 누르면 변경
-
     public void onBackButtonClicked(View v){
         startActivity(new Intent(ChangePassword.this, ChangeInfoActivity.class));
     }
