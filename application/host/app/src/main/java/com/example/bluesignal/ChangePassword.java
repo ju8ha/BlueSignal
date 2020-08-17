@@ -57,15 +57,15 @@ public class ChangePassword extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             try {
-                                JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
-                                boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
+                                JSONObject jasonObject=new JSONObject(response);
+                                boolean success=jasonObject.getBoolean("success");
                                 if (success) {//성공한 경우
                                     Toast.makeText(getApplicationContext(), "비밀번호 변경 성공!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(ChangePassword.this, SignInActivity.class);
                                     startActivity(intent);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 }
-                                else{//실패한 경우
+                                else{
                                     Toast.makeText(getApplicationContext(),"비밀번호 변경 실패!",Toast.LENGTH_SHORT).show();
                                     return;
                                 }
@@ -74,25 +74,19 @@ public class ChangePassword extends AppCompatActivity {
                             }
                         }
                     };
-                    //서버로 volley를 이용해서 요청을 함
                     changeRequest=new ChangeRequest(modify_password,responseListener);
                     queue= Volley.newRequestQueue(ChangePassword.this);
                     queue.add(changeRequest);
 
 
-                }else{//비밀번호를 잘못 입력하였습니다 ~
+                }else{
                     Toast.makeText(getApplicationContext(), "비밀번호를 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
 
             }
         });
-
     }
-
-    //현재 비밀번호 입력
-    //바꿀 비밀번호 입력
-    //변경 버튼 누르면 변경
 
     public void onBackButtonClicked(View v){
         startActivity(new Intent(ChangePassword.this, ChangeInfoActivity.class));

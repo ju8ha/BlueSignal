@@ -7,7 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
-    //시작 화면 액티비티
+
     Handler handler = new Handler();
     Runnable r = new Runnable() {
         @Override

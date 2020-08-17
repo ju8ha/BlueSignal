@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SignUpActivity extends AppCompatActivity {
-    //회원 가입 activity
+
     Button sign_up_button;
     Button validateButton;
     Button back_button;
@@ -103,7 +103,6 @@ public class SignUpActivity extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //editText에 입력되어있는 값을 get(가져온다)해온다
                 String hostID=id_text.getText().toString();
                 final String hostPSWD=password_text.getText().toString();
                 String hostName=name_text.getText().toString();
@@ -118,14 +117,14 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jasonObject=new JSONObject(response);//Register2 php에 response
-                            boolean success=jasonObject.getBoolean("success");//Register2 php에 sucess
-                            if (success) {//회원등록 성공한 경우
+                            JSONObject jasonObject=new JSONObject(response);
+                            boolean success=jasonObject.getBoolean("success");
+                            if (success) {
                                 Toast.makeText(getApplicationContext(), "회원 등록 성공!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                                 startActivity(intent);
                             }
-                            else{//회원등록 실패한 경우
+                            else{
                                 Toast.makeText(getApplicationContext(),"회원 등록 실패!",Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -134,7 +133,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }
                 };
-                //서버로 volley를 이용해서 요청을 함
                 SignUpRequest registerRequest=new SignUpRequest(hostID,hostPSWD, hostName, hostPhnNumber,responseListener);
                 RequestQueue queue= Volley.newRequestQueue(SignUpActivity.this);
                 queue.add(registerRequest);}

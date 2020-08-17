@@ -53,7 +53,6 @@ public class MyBluetoothLeScanner {
     private static final String TAG_JSON="webnautes";
     private static final String TAG_ID = "hostID";
 
-    private TextView mTextViewResult;
     ArrayList<HashMap<String, String>> mArrayList;
     String mJsonString;
     static String[] price;
@@ -122,10 +121,7 @@ public class MyBluetoothLeScanner {
         }
 
         private void addScanResult(ScanResult result) {
-            BluetoothDevice device = result.getDevice();
             String data= "NONE";
-
-            //*****************************************************************************************************************
             byte[] sdata;
 
             Map<ParcelUuid,byte[]> tempMap= result.getScanRecord().getServiceData();
@@ -134,15 +130,13 @@ public class MyBluetoothLeScanner {
                 data=new String(sdata, StandardCharsets.UTF_8);
                 if(findHostInServer(data)){
                     myResult = data;
-                    System.out.println(myResult);
+                    return;
                 }
-                return;
             }
         }
     }
-// host_id 리스트 배열 저장
-    private boolean findHostInServer(String hostName){
 
+    private boolean findHostInServer(String hostName){
         for(int i = 0; i < price.length; i++){
             if(price[i].equals(hostName)){
                 return true;
