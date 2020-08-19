@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MyBluetoothLeScanner {
-    public final String UUID ="CDB7950D-73F1-4D4D-8E47-C090502DBD63";
+    public final String UUID ="00010100-0805-1000-0600-c030f0100d08";
     BluetoothAdapter adapter;
     ScanCallback callback;
     BluetoothLeScanner scanner;
